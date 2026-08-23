@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaddi Maithresh — Agentic AI / GenAI Engineer</title>
+<meta name="description" content="Vaddi Maithresh — Agentic AI, GenAI, and Automation Engineer. RAG pipelines, MCP tool-orchestration agents, and automation platforms that run in production, not just demos.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23090c12'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%233dd9c4'/%3E%3C/svg%3E">
+<meta property="og:title" content="Vaddi Maithresh — Agentic AI / GenAI Engineer">
+<meta property="og:description" content="RAG pipelines, MCP tool-orchestration agents, and automation platforms — solo-built, production-minded.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#090c12">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader-inner">
+    <span class="preloader-mark">vaddi.dev</span>
+    <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
+    <span class="preloader-pct" id="preloaderPct">00%</span>
+  </div>
+</div>
+
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-label" id="cursorLabel" aria-hidden="true">
+  <svg viewBox="0 0 100 100" width="88" height="88">
+    <defs>
+      <path id="orbitPath" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
+    </defs>
+    <text font-family="'IBM Plex Mono', monospace" font-size="8.2" letter-spacing="2.5" fill="currentColor">
+      <textPath href="#orbitPath" xlink:href="#orbitPath" id="orbitText">VIEW PROJECT • VIEW PROJECT • </textPath>
+    </text>
+  </svg>
+  <span class="cursor-label-arrow">↗</span>
+</div>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">vaddi<span style="color:var(--text-dim); font-weight:400;">.dev</span></a>
+    <ul class="navlinks" id="navLinks">
+      <li><a href="#about">about</a></li>
+      <li><a href="#stack">stack</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#automation">automation</a></li>
+      <li><a href="#education">education</a></li>
+      <li class="nav-cta-mobile"><a href="#contact">contact →</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">contact →</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ── HERO ─────────────────────────────────────── -->
+  <section class="hero">
+    <div class="bg-aurora" aria-hidden="true"><span></span><span></span></div>
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-fade"></div>
+    <div class="hero-inner">
+      <div class="eyebrow">$ whoami<span class="cursor"></span></div>
+      <h1>I build agent<br>pipelines that <span>ship</span>, not slideware.</h1>
+      <p class="hero-role">Vaddi Maithresh — Agentic AI · GenAI · Automation Engineer</p>
+      <p class="hero-desc">Final-year B.Tech CSE student at KMIT Hyderabad. I design RAG systems, MCP tool-routing agents, and automation platforms — and I can walk you through every line of every one of them, because I wrote every line.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+    <div class="scroll-hint"><span>scroll</span><span class="line"></span></div>
+  </section>
+
+  <!-- ── ABOUT ────────────────────────────────────── -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>LangChain</span><span>LangGraph</span><span>CrewAI</span><span>MCP</span>
+      <span>RAG</span><span>ChromaDB</span><span>Ollama</span><span>llama.cpp</span>
+      <span>n8n</span><span>Make.com</span><span>Python</span><span>httpx</span>
+      <span>LangChain</span><span>LangGraph</span><span>CrewAI</span><span>MCP</span>
+      <span>RAG</span><span>ChromaDB</span><span>Ollama</span><span>llama.cpp</span>
+      <span>n8n</span><span>Make.com</span><span>Python</span><span>httpx</span>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="about-grid reveal">
+        <div class="about-text">
+          <div class="section-eyebrow">$ cat about.md</div>
+          <h2>No inflated claims. Every line here is something I can defend in an interview.</h2>
+          <p style="margin-top:22px;">I'm a final-year <strong>B.Tech CSE</strong> undergrad at KMIT Hyderabad (CGPA <strong>7.96/10</strong>), and most of what's below happened outside class — evenings and weekends spent on <strong>agentic RAG architecture</strong>: retrieval pipelines, MCP-based tool orchestration, multi-agent systems that route between reasoning and live data.</p>
+          <p>Seven of those are solo builds, shipped as standalone repos — not notebooks, not one-off demos. A CrewAI resume-matching tool with an actual pytest suite behind it. Ten-plus n8n/Make.com workflows I built, broke, and fixed myself, which taught me more than the building did. Two group platforms too, where I owned the ML-integration layer.</p>
+          <p>Right now I'm building an async job-scraping backend and pushing my RAG stack to run fully local — no cloud dependency, no API bill, just whatever my machine can handle.</p>
+
+          <div class="principles">
+            <div class="principles-label">A few things I actually believe, not just say:</div>
+            <ul>
+              <li><b>Simple beats clever.</b> I rebuilt DocuChat from a multi-agent system back down to one agent once the extra complexity stopped paying for itself.</li>
+              <li><b>Ship it, don't demo it.</b> Every project on this page is a real repo with a README, not a notebook I ran once.</li>
+              <li><b>If I can't defend it in an interview, it doesn't go on this page.</b></li>
+            </ul>
+          </div>
+        </div>
+        <div class="terminal">
+          <div class="t-head"><span></span><span></span><span></span></div>
+          <div class="t-line"><span class="t-prompt">$</span> whoami --verbose</div>
+          <div class="t-line t-out">role: AI/ML · GenAI · Agentic AI Engineer</div>
+          <div class="t-line t-out">based: Hyderabad, Telangana, IN</div>
+          <div class="t-line t-out">status: open to internships</div>
+          <div class="t-line" style="margin-top:14px;"><span class="t-prompt">$</span> ls agents/ --count</div>
+          <div class="t-line t-out">7 solo-built · MCP · LangChain · CrewAI</div>
+          <div class="t-line" style="margin-top:14px;"><span class="t-prompt">$</span> curl -s stack.local/llm</div>
+          <div class="t-line t-out">Qwen3-4B-GGUF, gemma3:4b — local, offline</div>
+          <div class="t-line" style="margin-top:14px;"><span class="t-prompt">$</span> echo $STATUS</div>
+          <div class="t-line t-out">still learning, still shipping</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STACK ────────────────────────────────────── -->
+  <section id="stack">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-eyebrow">$ ls stack/</div>
+        <h2>Technical stack</h2>
+        <p class="section-sub">Ordered by what I actually use day to day, not by what looks impressive on paper.</p>
+      </div>
+      <div class="stack-groups">
+        <div class="stack-card reveal">
+          <h3>LLM / Agentic AI</h3>
+          <div class="chips">
+            <span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">CrewAI</span>
+            <span class="chip">MCP (Composio)</span><span class="chip">RAG</span><span class="chip">ChromaDB</span>
+            <span class="chip">HF Embeddings</span><span class="chip">Ollama</span><span class="chip">llama.cpp</span>
+            <span class="chip">Prompt Engineering</span><span class="chip">ReAct / Plan-Execute</span>
+          </div>
+        </div>
+        <div class="stack-card reveal">
+          <h3>Automation</h3>
+          <div class="chips">
+            <span class="chip">n8n</span><span class="chip">Make.com</span><span class="chip">Automation Anywhere</span>
+            <span class="chip">Webhooks</span><span class="chip">REST APIs</span>
+          </div>
+        </div>
+        <div class="stack-card reveal">
+          <h3>Backend &amp; Data</h3>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">Flask</span><span class="chip">httpx (async)</span>
+            <span class="chip">Pydantic</span><span class="chip">SQL</span><span class="chip">Pandas</span><span class="chip">NumPy</span>
+          </div>
+        </div>
+        <div class="stack-card reveal">
+          <h3>Cloud, ML &amp; Tools</h3>
+          <div class="chips">
+            <span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">Kubernetes</span>
+            <span class="chip">TensorFlow</span><span class="chip">Keras</span><span class="chip">YOLO</span><span class="chip">Git</span>
+          </div>
+          <p class="stack-note">AWS / K8s / Jenkins: coursework + hands-on labs, no named production deployment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ─────────────────────────────────── -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-eyebrow">$ ls projects/ --featured</div>
+        <h2>Featured projects</h2>
+        <p class="section-sub">Four builds I'd actually walk you through in an interview. Hover a row for the details.</p>
+      </div>
+
+      <div class="proj-layout">
+        <div class="proj-list">
+
+          <a class="proj-row reveal" href="https://github.com/VaddiMaithresh-16/MCP_Agentic_DocuChat" target="_blank" rel="noopener" data-cursor-label="View repo">
+            <span class="proj-row-index">01</span>
+            <div class="proj-row-main">
+              <div class="proj-row-title">Agentic DocuChat</div>
+              <div class="proj-row-detail">
+                <p class="proj-desc">Agentic RAG CLI refactored (v4) into a minimal single-agent design running fully on local LLMs — no cloud API dependency. Chroma retrieval, a <code>retrieve_multi</code> tool for compound questions, a <code>calculate</code> tool, and dynamic routing to live Tavily search via MCP.</p>
+                <div class="proj-highlight">Pulled back from an earlier <b>multi-agent</b> version to a lean single agent once the added complexity stopped earning its keep.</div>
+                <div class="proj-stack"><span>LangChain</span><span>LangGraph</span><span>ChromaDB</span><span>Composio MCP</span><span>Ollama</span><span>llama.cpp</span></div>
+              </div>
+            </div>
+            <span class="proj-row-swatch" aria-hidden="true"></span>
+            <span class="proj-row-tag">solo · strongest project</span>
+            <span class="proj-row-arrow">↗</span>
+          </a>
+
+          <a class="proj-row reveal" href="https://github.com/VaddiMaithresh-16/Resume_Crew" target="_blank" rel="noopener" data-cursor-label="View repo">
+            <span class="proj-row-index">02</span>
+            <div class="proj-row-main">
+              <div class="proj-row-title">Resume Crew</div>
+              <div class="proj-row-detail">
+                <p class="proj-desc">Local-first resume-to-JD matcher. CrewAI agents combine deterministic keyword scoring with LLM analysis into a six-part report: match score, resume/JD profiles, skills-gap, tailored bullets, interview prep.</p>
+                <div class="proj-highlight">Hardware auto-detection (Apple Silicon/GPU), telemetry off by default, <b>pytest</b> coverage across 6 modules.</div>
+                <div class="proj-stack"><span>CrewAI</span><span>Ollama</span><span>Gemini API</span><span>Gradio</span><span>pytest</span></div>
+              </div>
+            </div>
+            <span class="proj-row-swatch" aria-hidden="true"></span>
+            <span class="proj-row-tag">solo · CLI + Gradio UI</span>
+            <span class="proj-row-arrow">↗</span>
+          </a>
+
+          <a class="proj-row reveal" href="https://github.com/VaddiMaithresh-16/CareerOS-Pro" target="_blank" rel="noopener" data-cursor-label="View repo">
+            <span class="proj-row-index">03</span>
+            <div class="proj-row-main">
+              <div class="proj-row-title">CareerOS-Pro</div>
+              <div class="proj-row-detail">
+                <p class="proj-desc">Async scraper for company career pages. Per-domain semaphore concurrency control, exponential backoff with jitter on retries, in-memory HTML caching, and hash-based deduplication. CLI exposes location and salary-range filters.</p>
+                <div class="proj-highlight">pytest suite covers concurrency behavior with <b>zero live HTTP calls</b> — deterministic, CI-safe.</div>
+                <div class="proj-stack"><span>Python</span><span>httpx async</span><span>BeautifulSoup4</span><span>Pydantic</span><span>pytest</span></div>
+              </div>
+            </div>
+            <span class="proj-row-swatch" aria-hidden="true"></span>
+            <span class="proj-row-tag">solo · async backend</span>
+            <span class="proj-row-arrow">↗</span>
+          </a>
+
+          <a class="proj-row reveal" href="https://github.com/VaddiMaithresh-16/MCP_SkillMap_Agent" target="_blank" rel="noopener" data-cursor-label="View repo">
+            <span class="proj-row-index">04</span>
+            <div class="proj-row-main">
+              <div class="proj-row-title">MCP Agents Suite</div>
+              <div class="proj-row-detail">
+                <p class="proj-desc">Two agents orchestrating Composio-hosted MCP tools via LangChain: skill-to-career mapping with live India job search (JSearch API), and compensation research scraping Glassdoor, AmbitionBox, and Levels.fyi into salary bands.</p>
+                <div class="proj-highlight">Session state persisted with <b>InMemorySaver</b> so follow-up queries resolve without restating context.</div>
+                <div class="proj-stack"><span>LangChain</span><span>Composio MCP</span><span>JSearch API</span><span>Gemini API</span></div>
+              </div>
+            </div>
+            <span class="proj-row-swatch" aria-hidden="true"></span>
+            <span class="proj-row-tag">solo · SkillMap + SalaryInsights</span>
+            <span class="proj-row-arrow">↗</span>
+          </a>
+
+        </div>
+
+        <aside class="proj-stage reveal" id="projStage" aria-live="polite">
+          <div class="proj-stage-inner" id="projStageInner"></div>
+        </aside>
+      </div>
+
+      <div class="more-projects reveal">
+        <button class="more-toggle" id="moreToggle" aria-expanded="false" aria-controls="moreBody">
+          <span>$ ls projects/ --all</span><span id="moreArrow">+ show 5 more</span>
+        </button>
+        <div class="more-body" id="moreBody">
+          <div class="more-item">
+            <span class="proj-tag">solo</span>
+            <h4>AI Game Development Crew</h4>
+            <p>3-agent CrewAI pipeline (Designer → Developer → QA) turns a one-line idea into a playable 2D game, packaged to WebAssembly via pygbag and shared through ngrok.</p>
+            <div class="proj-stack"><span>CrewAI</span><span>Gemini</span><span>Pygame</span><span>pygbag</span></div>
+          </div>
+          <div class="more-item">
+            <span class="proj-tag">solo</span>
+            <h4>MCP Email Inbox Summarizer</h4>
+            <p>Gmail triage agent — classifies unread mail URGENT / NEEDS REPLY / FYI and drafts replies via Composio MCP. Read/draft only, never auto-sends.</p>
+            <div class="proj-stack"><span>LangChain</span><span>Composio MCP</span><span>Gemini</span></div>
+          </div>
+          <div class="more-item">
+            <span class="proj-tag">solo</span>
+            <h4>MCP CourseFinder Agent</h4>
+            <p>Merges Tavily + YouTube MCP results into one structured learning path per topic, with a no-hallucination system prompt grounding every recommendation in tool output.</p>
+            <div class="proj-stack"><span>LangChain</span><span>Composio MCP</span><span>Gemini</span></div>
+          </div>
+          <div class="more-item">
+            <span class="proj-tag">solo · Kaggle GPU</span>
+            <h4>F5-TTS Podcast Generator</h4>
+            <p>Reproducible Kaggle notebook running F5-TTS voice-cloning inference behind a Gradio UI.</p>
+            <div class="proj-stack"><span>F5-TTS</span><span>Kaggle</span><span>Gradio</span></div>
+          </div>
+          <div class="more-item">
+            <span class="proj-tag">solo · frontend</span>
+            <h4>FoodMunch</h4>
+            <p>Responsive restaurant landing page. Kept for completeness — not my target direction.</p>
+            <div class="proj-stack"><span>HTML5</span><span>CSS3</span><span>Bootstrap</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AUTOMATION ───────────────────────────────── -->
+  <section id="automation">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-eyebrow">$ ls automation/</div>
+        <h2>Automation &amp; workflow engineering</h2>
+        <p class="section-sub">Ten-plus workflows — all built, broken, and fixed by me, solo, across n8n, Make.com, and RPA.</p>
+      </div>
+      <div class="auto-list reveal">
+        <div class="auto-item">
+          <div class="auto-status">live ↗</div>
+          <div>
+            <h4><a href="https://podease-pro.lovable.app" target="_blank" rel="noopener">AI Podcast Generator — PodEase Pro</a></h4>
+            <p>Idea-to-published-audio pipeline. A Lovable frontend triggers a webhook into n8n, which routes the topic through Gemini for script generation, then Murf AI for text-to-speech, returning the finished file via webhook response.</p>
+            <div class="proj-stack"><span>n8n</span><span>Gemini API</span><span>Murf AI</span><span>Webhooks</span></div>
+          </div>
+        </div>
+        <div class="auto-item">
+          <div class="auto-status">8 workflows</div>
+          <div>
+            <h4>n8n Workflow Automation Suite</h4>
+            <p>Scheduled news summarization, HTTP-triggered social posting, and job-listing polling with match flagging — all built and debugged solo using trigger, HTTP, and LLM-integrated nodes.</p>
+            <div class="proj-stack"><span>n8n</span><span>Gemini</span><span>Webhooks</span></div>
+          </div>
+        </div>
+        <div class="auto-item">
+          <div class="auto-status">2 scenarios</div>
+          <div>
+            <h4>Make.com Automation Suite</h4>
+            <p>A Google Sheets → Gemini content-generation pipeline, and a Telegram-triggered AI resume evaluator that parses a Google Doc, scores it via an AI Agent module, and returns results by Telegram/Email.</p>
+            <div class="proj-stack"><span>Make.com</span><span>Gemini</span><span>Sheets</span><span>Telegram</span></div>
+          </div>
+        </div>
+        <div class="auto-item">
+          <div class="auto-status">RPA</div>
+          <div>
+            <h4>Automated Email Reminder Bot</h4>
+            <p>Loops through Sheets records, runs date-diff conditional logic to flag overdue items, sends reminder emails, and writes status back — wrapped in Try-Catch so one bad row doesn't kill the run.</p>
+            <div class="proj-stack"><span>Automation Anywhere</span><span>Google Sheets</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GROUP PLATFORMS ──────────────────────────── -->
+  <section id="group">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-eyebrow">$ ls team/</div>
+        <h2>Group AI platforms</h2>
+        <p class="section-sub">Two builds where I owned the ML-integration layer on a four-person team.</p>
+      </div>
+      <div class="group-grid">
+        <div class="group-card reveal">
+          <div class="proj-top"><div class="proj-title" style="font-size:1.05rem;">CrimeSleuth</div>
+            <a class="proj-link" href="https://github.com/VaddiMaithresh-16/CrimeSleuth" target="_blank" rel="noopener">GitHub ↗</a></div>
+          <span class="proj-tag">team of 4 · forensic case management</span>
+          <p>Investigators create cases, upload evidence, and get computer-vision + multimodal AI analysis with an LLM chat interface over case data.</p>
+          <div class="scope"><b>My scope:</b> trained the 14-class crime-scene classifier myself on Colab, exported as <code>.pth</code>, loaded locally for PyTorch inference in Flask; integrated YOLO detection; outputs feed Gemini to auto-generate reports.</div>
+          <div class="proj-stack"><span>React</span><span>Flask</span><span>MongoDB</span><span>YOLO</span><span>Gemini API</span></div>
+        </div>
+        <div class="group-card reveal">
+          <div class="proj-top"><div class="proj-title" style="font-size:1.05rem;">SignatureSense</div>
+            <a class="proj-link" href="https://github.com/VaddiMaithresh-16/SignatureSense" target="_blank" rel="noopener">GitHub ↗</a></div>
+          <span class="proj-tag">team of 4 · signature verification</span>
+          <p>Full-stack handwritten signature verification via image similarity.</p>
+          <div class="scope"><b>My scope:</b> integrated a pre-trained Keras/TensorFlow model (<code>.h5</code>) for inference, handled image preprocessing, integration testing, and Bootstrap frontend fixes.</div>
+          <div class="proj-stack"><span>MERN</span><span>Flask</span><span>TensorFlow/Keras</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EDUCATION / CERTS ────────────────────────── -->
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-eyebrow">$ cat education.md</div>
+        <h2>Education &amp; certifications</h2>
+      </div>
+      <div class="reveal">
+        <div class="ed-row">
+          <div class="ed-left">
+            <h4>Keshav Memorial Institute of Technology (KMIT)</h4>
+            <span>B.Tech, Computer Science and Engineering — CGPA 7.96/10</span>
+          </div>
+          <div class="ed-right">Hyderabad, India<br>2023 — 2027</div>
+        </div>
+        <div class="cert-grid">
+          <div class="cert-card reveal">
+            <h5>Building LLM Applications</h5>
+            <p>RAG, LangChain Agents, MCP, context engineering.</p>
+          </div>
+          <div class="cert-card reveal">
+            <h5>MCP Workshop (Cursor IDE)</h5>
+            <p>5 hosted/local MCP integrations — Gmail, LinkedIn, Indian Railway, ElevenLabs+Twilio voice agent, YouTube/Drive/Notion.</p>
+          </div>
+          <div class="cert-card reveal">
+            <h5>RPA Workshop</h5>
+            <p>Automation Anywhere — loop control, conditional logic, error handling.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ──────────────────────────────────── -->
+  <section id="contact" class="contact-section">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="section-eyebrow" style="justify-content:center; display:flex;">$ ./contact.sh</div>
+        <h2>Let's build something that ships.</h2>
+        <p class="section-sub">Open to AI/ML, GenAI, Agentic AI, and Automation internship roles. Based in Hyderabad — happy to go remote.</p>
+        <div class="contact-links">
+          <a href="mailto:maithreshvaddi16@gmail.com">✉ maithreshvaddi16@gmail.com</a>
+          <a href="https://linkedin.com/in/vaddi-maithresh" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href="https://github.com/VaddiMaithresh-16" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="https://leetcode.com/u/MaithreshV/" target="_blank" rel="noopener">LeetCode ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">Vaddi Maithresh — Hyderabad, Telangana · +91 70752 98432 · built solo, no template.</div>
+</footer>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="js/scene.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
