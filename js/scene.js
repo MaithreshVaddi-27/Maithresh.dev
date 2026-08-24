@@ -89,8 +89,12 @@ function run() {
   scene.add(grid);
 
   // ── Drifting particle field — independent motion, no shared center,
-  // wraps around instead of orbiting. Two size classes for depth.
-  const isSmall = (i) => i % 5 !== 0;
+  // wraps around instead of orbiting. The "two size classes for depth"
+  // are this field (small, dim, distant) plus the brighter "sparks"
+  // field defined below (larger, near) — two separate Points objects,
+  // since THREE.PointsMaterial only supports one uniform size per
+  // object (a true per-vertex size needs a custom shader, which isn't
+  // worth the added complexity/risk for this).
   const particleCount = isConstrained ? 140 : 320;
   const particleGeo = new THREE.BufferGeometry();
   const particlePos = new Float32Array(particleCount * 3);

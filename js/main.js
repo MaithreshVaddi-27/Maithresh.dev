@@ -75,6 +75,12 @@ if (!reduceMotion && typeof window.Lenis !== 'undefined' && hasGSAP) {
   const cursorLabel = document.getElementById('cursorLabel');
   if (!dot || !ring || window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
 
+  // Only hide the OS cursor once we're actually about to render a
+  // replacement for it — see the html.custom-cursor scoping in
+  // css/style.css. Prevents an invisible cursor if this script had
+  // errored out before reaching this point.
+  document.documentElement.classList.add('custom-cursor');
+
   let dotX = 0, dotY = 0, ringX = 0, ringY = 0, targetX = 0, targetY = 0;
   window.addEventListener('pointermove', (e) => {
     targetX = e.clientX; targetY = e.clientY;
@@ -175,6 +181,11 @@ if (!reduceMotion && typeof window.Lenis !== 'undefined' && hasGSAP) {
   function fillStage(row) {
     const detail = row.querySelector('.proj-row-detail');
     if (!stageInner || !detail) return;
+    // Generation token guards against a rapid hover across multiple
+    // rows resolving out of order — without this, quickly moving the
+    // mouse row1 → row2 → row3 could let row1's delayed swap land last,
+    // showing the wrong project's details while hovering row3.
+    const myToken = ++fillStage.token;
     const swap = () => { stageInner.innerHTML = detail.innerHTML; };
     if (reduceMotion || !stageInner.childNodes.length) {
       swap();
@@ -182,10 +193,12 @@ if (!reduceMotion && typeof window.Lenis !== 'undefined' && hasGSAP) {
     }
     stageInner.classList.add('swapping');
     setTimeout(() => {
+      if (myToken !== fillStage.token) return; // a newer hover has already superseded this one
       swap();
       stageInner.classList.remove('swapping');
     }, 180);
   }
+  fillStage.token = 0;
 
   if (stage && stageInner && rows.length) {
     fillStage(rows[0]); // default to the first project so the panel isn't empty on load

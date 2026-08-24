@@ -35,10 +35,15 @@
     font-family: var(--font-body);
     line-height: 1.6;
     overflow-x: hidden;
-    cursor: none;
   }
+  /* cursor:none is scoped to this class, added by JS only once the
+     custom cursor (dot/ring) has actually initialized successfully —
+     see js/main.js. If main.js fails to load or errors before that
+     point, the OS cursor stays visible instead of vanishing with
+     nothing to replace it. */
+  html.custom-cursor body{ cursor: none; }
   @media (hover: none), (pointer: coarse){
-    body{ cursor: auto; }
+    html.custom-cursor body{ cursor: auto; }
   }
 
   /* The 3D scene is the page's substrate, not a hero decoration: fixed,
@@ -179,7 +184,7 @@
 
   .nav-toggle{
     display:none; flex-direction:column; justify-content:center; gap:5px;
-    width: 30px; height: 30px; background:none; border:none; cursor:pointer; padding:0;
+    width: 30px; height: 30px; background:none; border:none; padding:0;
   }
   .nav-toggle span{
     display:block; width: 100%; height: 1.5px; background: var(--text);
@@ -441,7 +446,7 @@
     color: var(--text-dim); width: 34px; flex-shrink:0;
     transition: color 0.3s ease, text-shadow 0.3s ease;
   }
-  .proj-row:hover .proj-row-index{ color: #fff; text-shadow: 0 0 12px rgba(142,203,255,0.7); }
+  .proj-row:hover .proj-row-index, .proj-row:focus-visible .proj-row-index{ color: #fff; text-shadow: 0 0 12px rgba(142,203,255,0.7); }
 
   .proj-row-main{ position:relative; z-index:1; flex: 1; min-width:0; }
   .proj-row-title{
@@ -452,16 +457,28 @@
   /* Letters are wrapped in spans by js/main.js on load, for the
      per-letter hover ripple. */
   .proj-row-title span{ display:inline-block; will-change: transform; }
-  .proj-row:hover .proj-row-title{ transform: translateX(6px); color: #fff; }
+  .proj-row:hover .proj-row-title, .proj-row:focus-visible .proj-row-title{ transform: translateX(6px); color: #fff; }
 
   /* The row's own detail block is the single source of truth for
      content (js/main.js reads it to populate the sticky stage), but
      it's only ever *displayed* inline on narrow screens where there's
      no room for a side panel and no real hover concept anyway. */
-  .proj-row-detail{ display:none; }
+  /* The row's own detail block is the single source of truth for
+     content (js/main.js reads it to populate the sticky stage). On
+     desktop it's visually hidden but NOT display:none — display:none
+     would remove it from the accessibility tree entirely, so a screen
+     reader reading the page linearly (not just tabbing link-to-link)
+     would silently skip every project description. This keeps it
+     readable to assistive tech while invisible/non-reflowing for
+     sighted users, who see the same content in the sticky stage panel. */
+  .proj-row-detail{
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap;
+  }
   @media(max-width:899px){
     .proj-row-detail{
-      display:block; flex-basis: 100%; width:100%; margin-top: 14px;
+      position: static; width:auto; height:auto; overflow:visible; clip:auto; white-space:normal;
+      display:block; flex-basis: 100%; margin-top: 14px;
     }
     .proj-row{ flex-wrap: wrap; }
     .proj-row-detail .proj-desc,
@@ -475,7 +492,7 @@
     transition: color 0.3s ease;
   }
   @media(min-width:640px){ .proj-row-tag{ display:block; } }
-  .proj-row:hover .proj-row-tag{ color: rgba(255,255,255,0.75); }
+  .proj-row:hover .proj-row-tag, .proj-row:focus-visible .proj-row-tag{ color: rgba(255,255,255,0.75); }
 
   .proj-row-arrow{
     position:relative; z-index:1; font-size: 20px; color: var(--text-dim);
@@ -484,7 +501,7 @@
        fighting over the same property. */
     transition: color 0.3s ease;
   }
-  .proj-row:hover .proj-row-arrow{ color: #fff; }
+  .proj-row:hover .proj-row-arrow, .proj-row:focus-visible .proj-row-arrow{ color: #fff; }
 
   .proj-row-swatch{
     position:relative; z-index:1; width:52px; height:52px; border-radius: var(--radius-sm);
@@ -493,7 +510,7 @@
     box-shadow: 0 8px 24px -8px rgba(61,139,255,0.5);
   }
   @media(min-width:640px){ .proj-row-swatch{ display:block; } }
-  .proj-row:hover .proj-row-swatch{ opacity:1; transform: scale(1) rotate(0deg); }
+  .proj-row:hover .proj-row-swatch, .proj-row:focus-visible .proj-row-swatch{ opacity:1; transform: scale(1) rotate(0deg); }
   .proj-row:nth-child(1) .proj-row-swatch{ background: linear-gradient(135deg, var(--blue-dim), var(--blue)); }
   .proj-row:nth-child(2) .proj-row-swatch{ background: linear-gradient(45deg, var(--blue), var(--blue-bright)); }
   .proj-row:nth-child(3) .proj-row-swatch{ background: linear-gradient(200deg, var(--blue-bright-dim), var(--blue-dim)); }
@@ -522,7 +539,6 @@
   .proj-stage .proj-highlight b{ color: #fff; }
   .proj-stage .proj-stack{ margin-top:16px; }
   .proj-stage .proj-stack span{ background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85); }
-  .proj-stage-empty{ color: var(--text-dim); font-family: var(--font-mono); font-size: 13px; }
 
   /* Shared with the "more projects" panel below */
   .proj-tag{ font-family: var(--font-mono); font-size: 11.5px; color: var(--blue-bright); margin-bottom: 12px; display:block; }
@@ -541,7 +557,7 @@
   .more-toggle{
     font-family: var(--font-mono); font-size: 13px; color: var(--text-mute);
     border: 1px dashed var(--line); border-radius: var(--radius-sm); padding: 14px 20px;
-    width: 100%; text-align:left; background: transparent; cursor:pointer;
+    width: 100%; text-align:left; background: transparent;
     display:flex; justify-content:space-between; align-items:center;
   }
   .more-toggle:hover{ border-color: var(--blue-dim); color: var(--blue); }
