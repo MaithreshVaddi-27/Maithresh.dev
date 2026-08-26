@@ -1,6 +1,6 @@
-# vaddi.dev — Portfolio
+# Maithresh.dev — Portfolio
 
-Personal portfolio for **Vaddi Maithresh** — Agentic AI / GenAI / Automation Engineer.
+Personal portfolio for **Maithresh Vaddi** — Agentic AI / GenAI / Automation Engineer.
 
 Live 3D hero (Three.js), scroll-driven motion (GSAP ScrollTrigger + Lenis), and content
 pulled directly from real, verified projects — no filler.
