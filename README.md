@@ -36,7 +36,7 @@ python3 -m http.server 8000
 
 1. Push this repo to GitHub (see below).
 2. Repo → Settings → Pages → Source: **Deploy from a branch** → Branch: `main` → `/ (root)`.
-3. Site publishes at `https://<username>.github.io/<repo-name>/`.
+3. Site publishes at `https://maithreshvaddi-27.github.io/Maithresh.dev/`.
 
 ## License
 
