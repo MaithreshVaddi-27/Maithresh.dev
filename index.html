@@ -5,21 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maithresh Vaddi — Agentic AI / GenAI Engineer</title>
 <meta name="description" content="Maithresh Vaddi — Agentic AI, GenAI, and Automation Engineer. Production-oriented RAG reliability pipelines, MCP tool-orchestration agents, and automation platforms that run, not just demo.">
+<link rel="canonical" href="https://maithreshvaddi-27.github.io/Maithresh.dev/">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23090c12'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%233dd9c4'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%230a0c0e'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='5'%20fill='%238fb0cf'/%3E%3C/svg%3E">
 <meta property="og:title" content="Maithresh Vaddi — Agentic AI / GenAI Engineer">
 <meta property="og:description" content="RAG reliability pipelines, MCP tool-orchestration agents, and automation platforms — solo-built, production-minded.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#090c12">
+<meta property="og:url" content="https://maithreshvaddi-27.github.io/Maithresh.dev/">
+<meta property="og:image" content="https://maithreshvaddi-27.github.io/Maithresh.dev/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Maithresh Vaddi — Agentic AI / GenAI Engineer">
+<meta name="twitter:description" content="RAG reliability pipelines, MCP tool-orchestration agents, and automation platforms — solo-built, production-minded.">
+<meta name="twitter:image" content="https://maithreshvaddi-27.github.io/Maithresh.dev/assets/og-image.jpg">
+<meta name="theme-color" content="#050607">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Maithresh Vaddi",
+  "url": "https://maithreshvaddi-27.github.io/Maithresh.dev/",
+  "jobTitle": "Agentic AI / GenAI Engineer",
+  "description": "Agentic AI, GenAI, and Automation Engineer building production-oriented RAG reliability pipelines, MCP tool-orchestration agents, and automation platforms.",
+  "address": { "@type": "PostalAddress", "addressLocality": "Hyderabad", "addressRegion": "Telangana", "addressCountry": "IN" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Keshav Memorial Institute of Technology" },
+  "sameAs": [
+    "https://www.linkedin.com/in/maithreshvaddi/",
+    "https://github.com/MaithreshVaddi-27"
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-fill" id="scrollProgressFill"></div></div>
 
 <div class="preloader" id="preloader" aria-hidden="true">
   <div class="preloader-inner">
@@ -36,7 +64,7 @@
     <defs>
       <path id="orbitPath" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
     </defs>
-    <text font-family="'IBM Plex Mono', monospace" font-size="8.2" letter-spacing="2.5" fill="currentColor">
+    <text font-family="'JetBrains Mono', monospace" font-size="8.2" letter-spacing="2.5" fill="currentColor">
       <textPath href="#orbitPath" xlink:href="#orbitPath" id="orbitText">VIEW PROJECT • VIEW PROJECT • </textPath>
     </text>
   </svg>
@@ -44,14 +72,18 @@
 </div>
 
 <header>
+  <div class="term-bar" aria-hidden="true">
+    <span class="dots"><span></span><span></span><span></span></span>
+    <span class="path">MaithreshVaddi-27@github: ~$ ./portfolio.sh --serve</span>
+  </div>
   <nav>
     <a href="#top" class="logo">maithresh<span style="color:var(--text-dim); font-weight:400;">.dev</span></a>
     <ul class="navlinks" id="navLinks">
-      <li><a href="#about">about</a></li>
-      <li><a href="#stack">stack</a></li>
-      <li><a href="#projects">projects</a></li>
-      <li><a href="#automation">automation</a></li>
-      <li><a href="#education">education</a></li>
+      <li><a href="#about">about.md</a></li>
+      <li><a href="#stack">stack/</a></li>
+      <li><a href="#projects">projects/</a></li>
+      <li><a href="#automation">automation/</a></li>
+      <li><a href="#education">education.md</a></li>
       <li class="nav-cta-mobile"><a href="#contact">contact →</a></li>
     </ul>
     <a href="#contact" class="nav-cta">contact →</a>
@@ -65,17 +97,36 @@
 
   <!-- ── HERO ─────────────────────────────────────── -->
   <section class="hero">
+    <div class="bg-schematic" aria-hidden="true"></div>
     <div class="bg-aurora" aria-hidden="true"><span></span><span></span></div>
     <canvas id="hero-canvas"></canvas>
     <div class="hero-fade"></div>
     <div class="hero-inner">
-      <div class="eyebrow">$ whoami<span class="cursor"></span></div>
-      <h1>I build agent<br>pipelines that <span>ship</span>, not slideware.</h1>
-      <p class="hero-role">Maithresh Vaddi — Agentic AI · GenAI · Automation Engineer</p>
-      <p class="hero-desc">Final-year B.Tech CSE student at KMIT Hyderabad. I design RAG reliability systems, MCP tool-routing agents, and automation platforms — and I can walk you through every line of every one of them, because I wrote every line.</p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary">View projects</a>
-        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      <div class="hero-grid">
+        <div class="hero-portrait reveal">
+          <span class="frame-corner fc-tl" aria-hidden="true"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 9V3a2 2 0 0 1 2-2h6"/></svg></span>
+          <span class="frame-corner fc-tr" aria-hidden="true"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 9V3a2 2 0 0 1 2-2h6"/></svg></span>
+          <span class="frame-corner fc-bl" aria-hidden="true"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 9V3a2 2 0 0 1 2-2h6"/></svg></span>
+          <span class="frame-corner fc-br" aria-hidden="true"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 9V3a2 2 0 0 1 2-2h6"/></svg></span>
+          <div class="ascii-card ascii-card--hero">
+            <img src="assets/svg/profile-ascii.svg" alt="whoami --ascii render of Maithresh Vaddi" width="840" height="875">
+          </div>
+        </div>
+        <div class="hero-text">
+          <div class="eyebrow"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="eyebrow-icon"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2"/></svg>$ whoami<span class="cursor"></span></div>
+          <h1>I build agent<br>pipelines that <span>ship</span>, not slideware.</h1>
+          <p class="hero-role">Maithresh Vaddi — Agentic AI · GenAI · Automation Engineer</p>
+          <p class="hero-desc">Final-year B.Tech CSE student at KMIT Hyderabad. I design RAG reliability systems, MCP tool-routing agents, and automation platforms — and I can walk you through every line of every one of them, because I wrote every line.</p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">View projects</a>
+            <a href="#contact" class="btn btn-ghost">Get in touch</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat"><svg class="hero-stat-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><path d="M15.5 20v-3.2a3.3 3.3 0 0 1 3.3-3.3H20"/></svg><span class="hero-stat-n">10</span><span class="hero-stat-l">solo-built agents</span></div>
+            <div class="hero-stat"><svg class="hero-stat-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 13.5h5.5L11 21l8-10.5h-5.5z"/></svg><span class="hero-stat-n">13</span><span class="hero-stat-l">automation workflows</span></div>
+            <div class="hero-stat"><svg class="hero-stat-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="11" rx="1.4"/><path d="M8.5 8V6a1.5 1.5 0 0 1 1.5-1.5h4A1.5 1.5 0 0 1 15.5 6v2"/></svg><span class="hero-stat-n">02</span><span class="hero-stat-l">group platforms shipped</span></div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="scroll-hint"><span>scroll</span><span class="line"></span></div>
@@ -93,23 +144,28 @@
     </div>
   </div>
 
+  <!-- ── WORDMARK ─────────────────────────────────── -->
+  <div class="wordmark-strip reveal">
+    <img src="assets/svg/wordmark.svg" alt="maithresh.dev — terminal wordmark render" width="487" height="364" loading="lazy">
+  </div>
+
   <!-- ── ABOUT ────────────────────────────────────── -->
   <section id="about">
     <div class="wrap">
       <div class="about-grid reveal">
         <div class="about-text">
-          <div class="section-eyebrow">$ cat about.md</div>
+          <div class="section-eyebrow"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M14 4v4h4M9.5 12.5h6M9.5 15.5h4.2"/></svg><span>$ cat about.md</span></div>
           <h2>No inflated claims. Every line here is something I can defend in an interview.</h2>
-          <p style="margin-top:22px;">I'm a final-year <strong>B.Tech CSE</strong> undergrad at KMIT Hyderabad (CGPA <strong>7.96/10</strong>), and most of what's below happened outside class — evenings and weekends spent on <strong>agentic RAG architecture</strong>: retrieval pipelines, MCP-based tool orchestration, multi-agent systems that route between reasoning and live data.</p>
-          <p>Ten of those are solo builds, shipped as standalone repos — not notebooks, not one-off demos. A production RAG reliability pipeline with a claim-verification loop. A CrewAI resume-matching tool with an actual pytest suite behind it. Thirteen n8n/Make.com/RPA workflows I built, broke, and fixed myself, which taught me more than the building did. Two group platforms too, where I owned the ML-integration layer.</p>
+          <p style="margin-top:22px;">I'm a final-year <strong>B.Tech CSE</strong> undergrad at KMIT Hyderabad, and most of what's below happened outside class — evenings and weekends spent on <strong>agentic RAG architecture</strong>: retrieval pipelines, MCP-based tool orchestration, multi-agent systems that route between reasoning and live data.</p>
+          <p>Ten of those are solo builds, shipped as standalone repos — not notebooks, not one-off demos. A production RAG reliability pipeline with a claim-verification loop. A CrewAI resume-matching tool that runs fully local by default. Thirteen n8n/Make.com/RPA workflows I built, broke, and fixed myself, which taught me more than the building did. Two group platforms too, where I owned the ML-integration layer.</p>
           <p>Right now I'm hardening TrustRAG's claim-verification and adaptive-recovery loop, and pushing CareerOS-Pro toward Docker-based production deployment with per-agent health monitoring.</p>
 
           <div class="principles">
             <div class="principles-label">A few things I actually believe, not just say:</div>
             <ul>
-              <li><b>Simple beats clever.</b> I rebuilt DocuChat from a multi-agent system back down to one agent once the extra complexity stopped paying for itself.</li>
-              <li><b>Ship it, don't demo it.</b> Every project on this page is a real repo with a README, not a notebook I ran once.</li>
-              <li><b>If I can't defend it in an interview, it doesn't go on this page.</b></li>
+              <li><svg class="principle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Simple beats clever.</b> I rebuilt DocuChat from a multi-agent system back down to one agent once the extra complexity stopped paying for itself.</span></li>
+              <li><svg class="principle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Ship it, don't demo it.</b> Every project on this page is a real repo with a README, not a notebook I ran once.</span></li>
+              <li><svg class="principle-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>If I can't defend it in an interview, it doesn't go on this page.</b></span></li>
             </ul>
           </div>
         </div>
@@ -134,13 +190,14 @@
   <section id="stack">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="section-eyebrow">$ ls stack/</div>
+        <div class="section-eyebrow"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 4 8l8 4.5 8-4.5z"/><path d="M4 12.5 12 17l8-4.5M4 16.5 12 21l8-4.5"/></svg><span>$ ls stack/</span></div>
         <h2>Technical stack</h2>
         <p class="section-sub">Ordered by what I actually use day to day, not by what looks impressive on paper.</p>
       </div>
       <div class="stack-groups">
         <div class="stack-card reveal">
-          <h3>LLM / Agentic AI</h3>
+          <div class="t-head-mini"><span></span><span></span><span></span><em>llm.sh</em></div>
+          <h3><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="stack-h-icon"><path d="M12 3.5a3 3 0 0 1 3 3v.3a3 3 0 0 1 1.8 5.4 3 3 0 0 1-1.8 5.4v.4a3 3 0 0 1-6 0v-.4a3 3 0 0 1-1.8-5.4A3 3 0 0 1 9 6.8V6.5a3 3 0 0 1 3-3z"/><path d="M9 9.5h6M9 14.5h6"/></svg>LLM / Agentic AI</h3>
           <div class="chips">
             <span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">CrewAI</span>
             <span class="chip">MCP (Composio)</span><span class="chip">RAG</span><span class="chip">Hybrid Retrieval (RRF)</span>
@@ -151,21 +208,24 @@
           </div>
         </div>
         <div class="stack-card reveal">
-          <h3>Automation</h3>
+          <div class="t-head-mini"><span></span><span></span><span></span><em>automation.sh</em></div>
+          <h3><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="stack-h-icon"><path d="M13 3 5 13.5h5.5L11 21l8-10.5h-5.5z"/></svg>Automation</h3>
           <div class="chips">
             <span class="chip">n8n</span><span class="chip">Make.com</span><span class="chip">Automation Anywhere</span>
             <span class="chip">Webhooks</span><span class="chip">REST APIs</span>
           </div>
         </div>
         <div class="stack-card reveal">
-          <h3>Backend &amp; Data</h3>
+          <div class="t-head-mini"><span></span><span></span><span></span><em>backend.sh</em></div>
+          <h3><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="stack-h-icon"><ellipse cx="12" cy="6" rx="7" ry="2.6"/><path d="M5 6v6c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V6M5 12v6c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-6"/></svg>Backend &amp; Data</h3>
           <div class="chips">
             <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">httpx (async)</span>
             <span class="chip">Pydantic</span><span class="chip">MongoDB</span><span class="chip">SQL</span><span class="chip">Pandas</span><span class="chip">NumPy</span>
           </div>
         </div>
         <div class="stack-card reveal">
-          <h3>Cloud, ML &amp; Tools</h3>
+          <div class="t-head-mini"><span></span><span></span><span></span><em>cloud.sh</em></div>
+          <h3><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="stack-h-icon"><path d="M7 18a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 17 8.5a4.5 4.5 0 0 1 .5 9H7z"/></svg>Cloud, ML &amp; Tools</h3>
           <div class="chips">
             <span class="chip">Docker</span><span class="chip">AWS</span><span class="chip">Kubernetes</span>
             <span class="chip">TensorFlow</span><span class="chip">Keras</span><span class="chip">YOLO</span><span class="chip">Git</span>
@@ -180,7 +240,7 @@
   <section id="projects">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="section-eyebrow">$ ls projects/ --featured</div>
+        <div class="section-eyebrow"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6.5a1 1 0 0 1 1-1H10l2 2h7.5a1 1 0 0 1 1 1V18a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1z"/></svg><span>$ ls projects/ --featured</span></div>
         <h2>Featured projects</h2>
         <p class="section-sub">Five builds I'd actually walk you through in an interview. Hover a row for the details.</p>
       </div>
@@ -193,13 +253,85 @@
             <div class="proj-row-main">
               <div class="proj-row-title">TrustRAG — AI Reliability Workbench</div>
               <div class="proj-row-detail">
-                <p class="proj-desc">Standard RAG pipelines fail silently — this doesn't. A structured reliability loop: hybrid retrieve (dense + BM25 sparse + RRF) → generate → decompose claims → verify each via NLI → audit evidence integrity (SHA-256) → score reliability → if low, diagnose the failure and run adaptive recovery via LangGraph.</p>
-                <div class="proj-highlight">The diagnosis → recovery loop is the differentiator — instead of silently returning a bad answer, it identifies <b>why</b> retrieval or verification failed and applies the cheapest targeted fix.</div>
-                <div class="proj-stack"><span>FastAPI</span><span>React 18</span><span>LangGraph</span><span>Qdrant</span><span>MongoDB Atlas</span><span>Docker</span><span>CI/CD</span></div>
+                <div class="proj-diagram">
+                  <svg viewBox="0 0 260 500" role="img" aria-label="TrustRAG reliability pipeline: query goes through hybrid retrieval, grounded generation, and claim verification; if the reliability score fails threshold, one bounded recovery round runs before falling back to an explicit abstain.">
+                    <style>
+                      .pd-t{ font-family:'JetBrains Mono', ui-monospace, monospace; }
+                      .pd-label{ font-size:9.5px; font-weight:600; fill:#e6edf3; letter-spacing:.2px; }
+                      .pd-sub{ font-size:7.6px; fill:#78808a; }
+                      .pd-tiny{ font-size:6.8px; fill:#78808a; }
+                    </style>
+                    <defs>
+                      <marker id="pdArrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M0,0 L8,4 L0,8 Z" fill="#3a4451"/>
+                      </marker>
+                    </defs>
+                
+                    <!-- query -->
+                    <rect x="85" y="8" width="90" height="26" rx="13" fill="none" stroke="#2a323d"/>
+                    <text x="130" y="25" text-anchor="middle" class="pd-t pd-label">QUERY</text>
+                    <line x1="130" y1="34" x2="130" y2="56" stroke="#3a4451" marker-end="url(#pdArrow)"/>
+                
+                    <!-- retrieve -->
+                    <rect x="20" y="58" width="220" height="54" rx="10" fill="rgba(143,176,207,0.10)" stroke="#8fb0cf" stroke-width="1.1"/>
+                    <text x="130" y="80" text-anchor="middle" class="pd-t pd-label">HYBRID RETRIEVE</text>
+                    <text x="130" y="96" text-anchor="middle" class="pd-t pd-sub">dense BGE-small · BM25 · RRF fusion</text>
+                    <line x1="130" y1="112" x2="130" y2="136" stroke="#3a4451" marker-end="url(#pdArrow)"/>
+                
+                    <!-- generation -->
+                    <rect x="35" y="138" width="190" height="36" rx="8" fill="none" stroke="#2a323d"/>
+                    <text x="130" y="160" text-anchor="middle" class="pd-t pd-label">GROUNDED GENERATION</text>
+                    <line x1="130" y1="174" x2="130" y2="198" stroke="#3a4451" marker-end="url(#pdArrow)"/>
+                
+                    <!-- verify -->
+                    <rect x="14" y="200" width="232" height="60" rx="10" fill="rgba(199,226,244,0.10)" stroke="#c7e2f4" stroke-width="1.1"/>
+                    <text x="130" y="221" text-anchor="middle" class="pd-t pd-label">CLAIM DECOMPOSITION + NLI</text>
+                    <text x="130" y="235" text-anchor="middle" class="pd-t pd-sub">fused in one call, not two passes</text>
+                    <text x="130" y="250" text-anchor="middle" class="pd-t pd-tiny">SHA-256 · temporal-window evidence audit</text>
+                    <line x1="130" y1="260" x2="130" y2="284" stroke="#3a4451" marker-end="url(#pdArrow)"/>
+                
+                    <!-- decision diamond -->
+                    <polygon points="130,286 206,320 130,354 54,320" fill="rgba(255,255,255,0.03)" stroke="#4a5462" stroke-width="1.1"/>
+                    <text x="130" y="317" text-anchor="middle" class="pd-t pd-label" style="font-size:8.6px;">SCORE ≥ τ ?</text>
+                    <text x="130" y="329" text-anchor="middle" class="pd-t pd-tiny">reliability threshold</text>
+                
+                    <!-- no branch -> recovery -->
+                    <path d="M54,320 Q38,348 65,372" fill="none" stroke="#3a4451" marker-end="url(#pdArrow)"/>
+                    <text x="34" y="352" class="pd-t pd-tiny" fill="#ffbd2e">no</text>
+                
+                    <!-- yes branch -> answer -->
+                    <path d="M206,320 Q222,348 195,372" fill="none" stroke="#3a4451" marker-end="url(#pdArrow)"/>
+                    <text x="204" y="352" class="pd-t pd-tiny" fill="#27c93f">yes</text>
+                
+                    <!-- recovery box -->
+                    <rect x="10" y="374" width="110" height="52" rx="10" fill="rgba(255,189,46,0.07)" stroke="#ffbd2e" stroke-width="1.1"/>
+                    <text x="65" y="393" text-anchor="middle" class="pd-t pd-label" style="font-size:8.6px;">BOUNDED RECOVERY</text>
+                    <text x="65" y="406" text-anchor="middle" class="pd-t pd-tiny">rewrite · re-retrieve · regen</text>
+                    <text x="65" y="418" text-anchor="middle" class="pd-t pd-tiny" fill="#ffbd2e">× 1 round max</text>
+                
+                    <!-- answer box -->
+                    <rect x="140" y="374" width="110" height="52" rx="10" fill="rgba(39,201,63,0.07)" stroke="#27c93f" stroke-width="1.1"/>
+                    <text x="195" y="396" text-anchor="middle" class="pd-t pd-label" style="font-size:8.6px;">GROUNDED ANSWER</text>
+                    <text x="195" y="410" text-anchor="middle" class="pd-t pd-tiny">cited · verified</text>
+                
+                    <!-- loop back: recovery -> retrieve (bounded retry) -->
+                    <path d="M120,388 C 254,388 254,86 242,86" fill="none" stroke="#4a5462" stroke-dasharray="2.5 3" marker-end="url(#pdArrow)"/>
+                    <text x="256" y="240" text-anchor="middle" class="pd-t pd-tiny" transform="rotate(90 256 240)">retries once, then falls through</text>
+                
+                    <!-- recovery -> abstain -->
+                    <line x1="65" y1="426" x2="65" y2="446" stroke="#3a4451" marker-end="url(#pdArrow)"/>
+                    <rect x="10" y="448" width="110" height="34" rx="8" fill="rgba(255,95,86,0.07)" stroke="#ff5f56" stroke-width="1.1"/>
+                    <text x="65" y="468" text-anchor="middle" class="pd-t pd-label" style="font-size:8.6px; fill:#ff9a92;">ABSTAIN</text>
+                    <text x="65" y="490" text-anchor="middle" class="pd-t pd-tiny">explicit — never a guessed answer</text>
+                  </svg>
+                </div>
+                <p class="proj-desc">Standard RAG systems fail silently — this doesn't. A local-first reliability loop: hybrid retrieve (dense BGE-small + BM25 + RRF) → grounded generation → claim decomposition fused with NLI verification in one call → SHA-256 + temporal-window evidence audit → reliability scoring against configurable thresholds → if it fails, one bounded LangGraph recovery round → grounded answer or explicit ABSTAIN. Runs entirely on Ollama/llama.cpp — no API keys required.</p>
+                <div class="proj-highlight">Recovery doesn't just retry blindly — it diagnoses <b>why</b> verification failed and picks the matching fix: query rewrite, wider re-retrieval, or a free regenerate, bounded to one round.</div>
+                <div class="proj-stack"><span>Python</span><span>FastAPI</span><span>React 18</span><span>LangGraph</span><span>Qdrant</span><span>MongoDB</span><span>Ollama</span><span>llama.cpp</span><span>Docker</span></div>
               </div>
             </div>
-            <span class="proj-row-swatch" aria-hidden="true"></span>
-            <span class="proj-row-tag">solo · 12/12 build phases complete</span>
+            <span class="proj-row-swatch" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 5 6v5.2c0 4.4 2.9 7.6 7 9.3 4.1-1.7 7-4.9 7-9.3V6z"/><path d="M9 12.2l2.1 2.1L15.3 10"/></svg></span>
+            <span class="proj-row-tag">solo · local-first, zero API keys, real CI/CD</span>
             <span class="proj-row-arrow">↗</span>
           </a>
 
@@ -213,7 +345,7 @@
                 <div class="proj-stack"><span>LangChain</span><span>LangGraph</span><span>ChromaDB</span><span>Gradio</span><span>Composio MCP</span><span>Ollama</span><span>llama.cpp</span></div>
               </div>
             </div>
-            <span class="proj-row-swatch" aria-hidden="true"></span>
+            <span class="proj-row-swatch" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.5h6l3.5 3.5V17a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1z"/><path d="M9.5 10.5h5M9.5 13.5h3.2"/><path d="M14 3.5V7h3.5"/><circle cx="17.3" cy="18" r="3.3" fill="none"/><path d="M16 19.3l-0.9 1.2 0.15-1.55"/></svg></span>
             <span class="proj-row-tag">solo · my original agent-architecture project</span>
             <span class="proj-row-arrow">↗</span>
           </a>
@@ -224,11 +356,11 @@
               <div class="proj-row-title">Resume Crew</div>
               <div class="proj-row-detail">
                 <p class="proj-desc">Compares a resume against a job description and produces an evidence-focused match report — no invented skills, no guessed experience. Runs locally by default (Ollama) with optional Gemini fallback. Accepts PDF, DOCX, TXT, and Markdown, across both CLI and Gradio UI.</p>
-                <div class="proj-highlight">Hardware auto-detection (Apple Silicon/GPU), telemetry off by default, <b>pytest</b> coverage across 6 modules.</div>
-                <div class="proj-stack"><span>CrewAI</span><span>Ollama</span><span>Gemini API</span><span>Gradio</span><span>pytest</span></div>
+                <div class="proj-highlight">Hardware auto-detection (Apple Silicon/GPU), telemetry off by default, runs fully offline via Ollama.</div>
+                <div class="proj-stack"><span>CrewAI</span><span>Ollama</span><span>Gemini API</span><span>Gradio</span></div>
               </div>
             </div>
-            <span class="proj-row-swatch" aria-hidden="true"></span>
+            <span class="proj-row-swatch" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3.5" width="10" height="15" rx="1"/><path d="M7 7.5h4.5M7 10.5h4.5M7 13.5h3"/><circle cx="17.3" cy="16.2" r="3.3"/><path d="M15.6 16.3l1.1 1.1 2-2.3"/></svg></span>
             <span class="proj-row-tag">solo · CLI + Gradio UI</span>
             <span class="proj-row-arrow">↗</span>
           </a>
@@ -240,10 +372,10 @@
               <div class="proj-row-detail">
                 <p class="proj-desc">Career-intelligence platform aggregating listings from JSearch, Adzuna, Remotive, RemoteOK, Arbeitnow, plus a free company-career-page scraper. Deterministic normalization and two-stage dedup keep the LLM out of the parsing path; a LangGraph state machine routes match-explanation across a multi-provider fallback chain.</p>
                 <div class="proj-highlight">Every LLM provider and job-source adapter runs as a self-contained agent with <b>health monitoring</b> — one failing source can't take the system down.</div>
-                <div class="proj-stack"><span>FastAPI</span><span>LangGraph</span><span>React 19</span><span>Docker</span><span>pytest</span></div>
+                <div class="proj-stack"><span>FastAPI</span><span>LangGraph</span><span>React 19</span><span>Docker</span></div>
               </div>
             </div>
-            <span class="proj-row-swatch" aria-hidden="true"></span>
+            <span class="proj-row-swatch" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="11" rx="1.4"/><path d="M8.5 8V6a1.5 1.5 0 0 1 1.5-1.5h4A1.5 1.5 0 0 1 15.5 6v2"/><circle cx="12" cy="13.3" r="1.3" fill="currentColor" stroke="none"/><path d="M12 14.6V17"/></svg></span>
             <span class="proj-row-tag">solo · in active production hardening</span>
             <span class="proj-row-arrow">↗</span>
           </a>
@@ -258,7 +390,7 @@
                 <div class="proj-stack"><span>LangChain</span><span>Composio MCP</span><span>JSearch API</span><span>Gemini API</span></div>
               </div>
             </div>
-            <span class="proj-row-swatch" aria-hidden="true"></span>
+            <span class="proj-row-swatch" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5.5" r="2"/><circle cx="5.5" cy="17.5" r="2"/><circle cx="18.5" cy="17.5" r="2"/><path d="M10.6 7.1 7 15.8M13.4 7.1 17 15.8M7.7 17.5h8.6"/></svg></span>
             <span class="proj-row-tag">solo · SkillMap + SalaryInsights</span>
             <span class="proj-row-arrow">↗</span>
           </a>
@@ -326,18 +458,19 @@
   <section id="automation">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="section-eyebrow">$ ls automation/</div>
+        <div class="section-eyebrow"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 13.5h5.5L11 21l8-10.5h-5.5z"/></svg><span>$ ls automation/</span></div>
         <h2>Automation &amp; workflow engineering</h2>
         <p class="section-sub">Thirteen workflows across three platforms — all built, broken, and fixed by me, solo.</p>
       </div>
       <div class="auto-list reveal">
         <div class="auto-item">
-          <div class="auto-status">live ↗</div>
+          <div class="auto-status is-live">● live ↗</div>
           <div>
             <h4><a href="https://podease-pro.lovable.app" target="_blank" rel="noopener">AI Podcast Generator — PodEase Pro</a></h4>
             <p>Idea-to-published-audio pipeline. A Lovable frontend triggers a webhook into n8n, which routes the topic through Gemini for script generation, then Murf AI for text-to-speech, returning the finished file via webhook response.</p>
             <div class="proj-stack"><span>n8n</span><span>Gemini API</span><span>Murf AI</span><span>Webhooks</span></div>
           </div>
+          <svg class="auto-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4.5v6a4 4 0 0 0 8 0v-6"/><path d="M12 16v3.5M8.5 19.5h7"/><rect x="9" y="2.5" width="6" height="8" rx="3"/></svg>
         </div>
         <div class="auto-item">
           <div class="auto-status">10 workflows</div>
@@ -346,6 +479,7 @@
             <p>Internship Applier, LinkedIn Job Tracker, News Summarizer, a Telegram Shopping Assistant (Groq Whisper voice input + Redis memory), Weather Daily Planner, Learning Path Generator Agent, and more — built and debugged solo.</p>
             <div class="proj-stack"><span>n8n</span><span>Gemini</span><span>Groq</span><span>Redis</span><span>Webhooks</span></div>
           </div>
+          <svg class="auto-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="10" width="6" height="6" rx="1.4"/><rect x="15.5" y="3" width="6" height="6" rx="1.4"/><rect x="15.5" y="15" width="6" height="6" rx="1.4"/><path d="M8.5 13h2a2 2 0 0 0 2-2V8.5a2 2 0 0 1 2-2h3M12.5 13v2.5a2 2 0 0 0 2 2h1"/></svg>
         </div>
         <div class="auto-item">
           <div class="auto-status">2 scenarios</div>
@@ -354,6 +488,7 @@
             <p>A Google Sheets → Gemini content-generation pipeline, and a Telegram-triggered AI resume evaluator that parses a Google Doc, scores it via an AI Agent module, and returns results by Telegram/Email.</p>
             <div class="proj-stack"><span>Make.com</span><span>Gemini</span><span>Sheets</span><span>Telegram</span></div>
           </div>
+          <svg class="auto-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.6 10.7 15.4 7.3M8.6 13.3l6.8 3.4"/></svg>
         </div>
         <div class="auto-item">
           <div class="auto-status">RPA</div>
@@ -362,6 +497,7 @@
             <p>Loops through Sheets records, runs date-diff conditional logic to flag overdue items, sends reminder emails, and writes status back — wrapped in Try-Catch so one bad row doesn't kill the run.</p>
             <div class="proj-stack"><span>Automation Anywhere</span><span>Google Sheets</span></div>
           </div>
+          <svg class="auto-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="12" rx="2"/><path d="M9 7V5.5a3 3 0 0 1 6 0V7M9 12h.01M15 12h.01M8.5 16h7"/></svg>
         </div>
       </div>
     </div>
@@ -371,12 +507,13 @@
   <section id="group">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="section-eyebrow">$ ls team/</div>
+        <div class="section-eyebrow"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19.5c0-3 2.5-5.2 5.5-5.2s5.5 2.2 5.5 5.2"/><circle cx="17" cy="9" r="2.4"/><path d="M15.3 14.6c2.4.3 4.2 2.2 4.2 4.9"/></svg><span>$ ls team/</span></div>
         <h2>Group AI platforms</h2>
         <p class="section-sub">Two builds where I owned the ML-integration layer on a four-person team.</p>
       </div>
       <div class="group-grid">
         <div class="group-card reveal">
+          <div class="t-head-mini"><span></span><span></span><span></span><em>crimesleuth.sh</em></div>
           <div class="proj-top"><div class="proj-title" style="font-size:1.05rem;">CrimeSleuth</div>
             <a class="proj-link" href="https://github.com/MaithreshVaddi-27/CrimeSleuth" target="_blank" rel="noopener">GitHub ↗</a></div>
           <span class="proj-tag">team of 4 · forensic case management</span>
@@ -385,11 +522,12 @@
           <div class="proj-stack"><span>React</span><span>Flask</span><span>MongoDB</span><span>YOLO</span><span>Gemini API</span></div>
         </div>
         <div class="group-card reveal">
+          <div class="t-head-mini"><span></span><span></span><span></span><em>signaturesense.sh</em></div>
           <div class="proj-top"><div class="proj-title" style="font-size:1.05rem;">SignatureSense</div>
             <a class="proj-link" href="https://github.com/MaithreshVaddi-27/SignatureSense" target="_blank" rel="noopener">GitHub ↗</a></div>
           <span class="proj-tag">team of 4 · signature verification</span>
           <p>Full-stack handwritten signature verification via image similarity.</p>
-          <div class="scope"><b>My scope:</b> integrated a pre-trained Keras/TensorFlow model (<code>.h5</code>) for inference, handled image preprocessing, integration testing, and Bootstrap frontend fixes.</div>
+          <div class="scope"><b>My scope:</b> integrated a pre-trained Keras/TensorFlow model (<code>.h5</code>) for inference, handled image preprocessing and Bootstrap frontend fixes.</div>
           <div class="proj-stack"><span>MERN</span><span>Flask</span><span>TensorFlow/Keras</span></div>
         </div>
       </div>
@@ -400,14 +538,15 @@
   <section id="education">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="section-eyebrow">$ cat education.md</div>
+        <div class="section-eyebrow"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.5 12 13l9.5-4.5z"/><path d="M6.5 10.8v5c0 1.3 2.5 2.7 5.5 2.7s5.5-1.4 5.5-2.7v-5M21.5 8.5v6.5"/></svg><span>$ cat education.md</span></div>
         <h2>Education</h2>
       </div>
       <div class="reveal">
         <div class="ed-row">
+          <svg class="ed-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 6l9 4.5-9 4.5-9-4.5Z"/><path d="M7 12.6v4c0 1.4 2.4 2.9 5 2.9s5-1.5 5-2.9v-4"/></svg>
           <div class="ed-left">
             <h4>Keshav Memorial Institute of Technology (KMIT)</h4>
-            <span>B.Tech, Computer Science and Engineering — CGPA 7.96/10</span>
+            <span>B.Tech, Computer Science and Engineering</span>
           </div>
           <div class="ed-right">Hyderabad, India<br>2023 — 2027</div>
         </div>
@@ -419,14 +558,17 @@
   <section id="contact" class="contact-section">
     <div class="wrap">
       <div class="reveal">
-        <div class="section-eyebrow" style="justify-content:center; display:flex;">$ ./contact.sh</div>
+        <div class="section-eyebrow" style="justify-content:center; display:flex;"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M6.5 9.5 10 12l-3.5 2.5M12.5 14.5h5"/></svg><span>$ ./contact.sh</span></div>
         <h2>Let's build something that ships.</h2>
         <p class="section-sub">Open to AI/ML, GenAI, Agentic AI, and Automation internship roles. Based in Hyderabad — happy to go remote.</p>
+        <div class="activity-card">
+          <img src="assets/svg/contrib-heatmap.svg" alt="GitHub contribution heatmap, last 12 months" loading="lazy">
+        </div>
         <div class="contact-links">
-          <a href="mailto:maithreshvaddi16@gmail.com">✉ maithreshvaddi16@gmail.com</a>
-          <a href="https://www.linkedin.com/in/maithreshvaddi/" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a href="https://github.com/MaithreshVaddi-27" target="_blank" rel="noopener">GitHub ↗</a>
-          <a href="https://leetcode.com/u/MaithreshV/" target="_blank" rel="noopener">LeetCode ↗</a>
+          <a href="mailto:maithreshvaddi16@gmail.com"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>maithreshvaddi16@gmail.com</a>
+          <a href="https://www.linkedin.com/in/maithreshvaddi/" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><circle cx="7" cy="7" r="2"/><path d="M7 11v9M13 20v-5.5a2.5 2.5 0 0 1 5 0V20M13 20v-9"/></svg>LinkedIn ↗</a>
+          <a href="https://github.com/MaithreshVaddi-27" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg>GitHub ↗</a>
+          <a href="https://leetcode.com/u/MaithreshV/" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M9 5 4 12l5 7M13 4l-3 16"/></svg>LeetCode ↗</a>
         </div>
       </div>
     </div>
@@ -435,7 +577,7 @@
 </main>
 
 <footer>
-  <div class="wrap">Maithresh Vaddi — Hyderabad, Telangana · +91 70752 98432 · built solo, no template.</div>
+  <div class="wrap">Maithresh Vaddi — Hyderabad, Telangana · built solo, no template.</div>
 </footer>
 <script type="importmap">
 {

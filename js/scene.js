@@ -52,17 +52,19 @@ function run() {
   renderer.toneMappingExposure = 1.05;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-  // ── Lighting — single hue family (blue), varied by intensity/tone
-  // rather than a second competing color.
-  const keyLight = new THREE.PointLight(0x3d8bff, 16, 40, 2);
+  // ── Lighting — instrument-panel blue, matching the site's Flight
+  // Telemetry accent. Varied by intensity/tone within one hue family
+  // rather than a second competing color, same discipline as every
+  // earlier palette this scene has worn.
+  const keyLight = new THREE.PointLight(0xc7e2f4, 15, 40, 2);
   keyLight.position.set(6, 6, 8);
   scene.add(keyLight);
 
-  const fillLight = new THREE.PointLight(0x8ecbff, 8, 40, 2);
+  const fillLight = new THREE.PointLight(0x8fb0cf, 7, 40, 2);
   fillLight.position.set(-7, 2, -4);
   scene.add(fillLight);
 
-  const ambient = new THREE.AmbientLight(0x0f1a2e, 1.3);
+  const ambient = new THREE.AmbientLight(0x141d22, 1.3);
   scene.add(ambient);
 
   // ── Wave grid — a tilted plane whose vertices undulate independently.
@@ -75,9 +77,9 @@ function run() {
   const basePositions = gridGeo.attributes.position.array.slice(); // original x,y,z per vertex
 
   const gridMat = new THREE.MeshStandardMaterial({
-    color: 0x1c4f96,
-    emissive: 0x2f6fd6,
-    emissiveIntensity: 0.35,
+    color: 0x223140,
+    emissive: 0x8fb0cf,
+    emissiveIntensity: 0.3,
     roughness: 0.5,
     metalness: 0.15,
     wireframe: true,
@@ -107,7 +109,7 @@ function run() {
   }
   particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
   const particleMat = new THREE.PointsMaterial({
-    color: 0x8ecbff, size: 0.05, transparent: true, opacity: 0.75,
+    color: 0xc7e2f4, size: 0.05, transparent: true, opacity: 0.75,
     sizeAttenuation: true,
   });
   const particles = new THREE.Points(particleGeo, particleMat);
@@ -128,7 +130,7 @@ function run() {
   }
   sparkGeo.setAttribute('position', new THREE.BufferAttribute(sparkPos, 3));
   const sparkMat = new THREE.PointsMaterial({
-    color: 0x3d8bff, size: 0.16, transparent: true, opacity: 0.9, sizeAttenuation: true,
+    color: 0x8fb0cf, size: 0.16, transparent: true, opacity: 0.9, sizeAttenuation: true,
   });
   const sparks = new THREE.Points(sparkGeo, sparkMat);
   scene.add(sparks);

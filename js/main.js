@@ -117,6 +117,37 @@ if (!reduceMotion && typeof window.Lenis !== 'undefined' && hasGSAP) {
       if (cursorLabel) cursorLabel.classList.remove('show');
     });
   });
+
+  // Respond on pointer-down, not on click/release (Apple: "Response" —
+  // feedback that waits for release reads as dead). Compresses the ring
+  // the instant a press starts, uncompresses the instant it ends —
+  // never gated on whether the press turned into a completed click.
+  window.addEventListener('pointerdown', () => ring.classList.add('press'));
+  window.addEventListener('pointerup', () => ring.classList.remove('press'));
+})();
+
+// ── Hero background parallax — depth via layered mouse response ──
+// The aurora glow (nearest layer) drifts more than the schematic grid
+// (farthest layer), the way foreground moves faster than background in
+// real parallax. Event-driven rather than rAF-looped since it only
+// needs to settle once per pointer move, not track continuously — the
+// CSS transition on each layer (see style.css) supplies the easing.
+(function () {
+  if (reduceMotion) return;
+  const hero = document.querySelector('.hero');
+  const aurora = document.querySelector('.bg-aurora');
+  const schematic = document.querySelector('.bg-schematic');
+  if (!hero || !aurora) return;
+  hero.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5);
+    const y = (e.clientY / window.innerHeight - 0.5);
+    aurora.style.transform = `translate(${x * -24}px, ${y * -18}px)`;
+    if (schematic) schematic.style.transform = `translate(${x * -8}px, ${y * -6}px)`;
+  });
+  hero.addEventListener('mouseleave', () => {
+    aurora.style.transform = '';
+    if (schematic) schematic.style.transform = '';
+  });
 })();
 
 // ── Magnetic buttons ─────────────────────────────────────────
@@ -134,10 +165,10 @@ if (!reduceMotion && typeof window.Lenis !== 'undefined' && hasGSAP) {
   });
 })();
 
-// ── 3D tilt on project / group cards ────────────────────────
+// ── 3D tilt on project / group cards / hero portrait ─────────
 (function () {
   if (reduceMotion) return;
-  document.querySelectorAll('.group-card').forEach((card) => {
+  document.querySelectorAll('.group-card, .ascii-card--hero, .stack-card, .terminal').forEach((card) => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const px = (e.clientX - rect.left) / rect.width - 0.5;
@@ -162,11 +193,23 @@ if (!reduceMotion && typeof window.Lenis !== 'undefined' && hasGSAP) {
     const text = titleEl.textContent;
     titleEl.setAttribute('aria-label', text);
     titleEl.innerHTML = '';
-    text.split('').forEach((ch) => {
-      const span = document.createElement('span');
-      span.textContent = ch === ' ' ? '\u00A0' : ch;
-      span.setAttribute('aria-hidden', 'true');
-      titleEl.appendChild(span);
+    // Split into words first, letters second — each word gets its own
+    // non-wrapping span so the browser can only break *between* words,
+    // never mid-word. The previous version replaced every space with a
+    // non-breaking space, which removed every valid break point and
+    // forced ugly mid-word wraps ("Wo|rkbench") at narrow widths.
+    text.split(' ').forEach((word, wi, arr) => {
+      const wordSpan = document.createElement('span');
+      wordSpan.className = 'proj-row-title-word';
+      word.split('').forEach((ch) => {
+        const span = document.createElement('span');
+        span.className = 'proj-row-title-letter';
+        span.textContent = ch;
+        span.setAttribute('aria-hidden', 'true');
+        wordSpan.appendChild(span);
+      });
+      titleEl.appendChild(wordSpan);
+      if (wi < arr.length - 1) titleEl.appendChild(document.createTextNode(' '));
     });
   });
 
@@ -178,6 +221,46 @@ if (!reduceMotion && typeof window.Lenis !== 'undefined' && hasGSAP) {
   const stageInner = document.getElementById('projStageInner');
   const rows = document.querySelectorAll('.proj-row');
 
+  // ── Pipeline diagram draw-in ────────────────────────────────
+  // The connector lines/arrows in the TrustRAG schematic trace
+  // themselves in (stroke-dashoffset 0 → length), rather than
+  // appearing with the rest of the diagram — reads as "data moving
+  // through the pipeline", the one animation on this page tied
+  // directly to what the project actually does. Boxes and the
+  // decision diamond stay static; only flow connectors (line/path)
+  // draw. getTotalLength() is measured fresh each call since the
+  // stage clones fresh nodes on every hover swap.
+  function animateDiagram(root) {
+    if (reduceMotion) return;
+    const svg = root.querySelector('.proj-diagram svg');
+    if (!svg) return;
+    // getTotalLength() throws on a non-rendered element — happens when
+    // this runs against the desktop stage panel while the viewport is
+    // actually mobile (.proj-stage is display:none under 900px, but
+    // fillStage() still populates it on init regardless of viewport).
+    // getClientRects().length is the cheap way to ask "is this actually
+    // laid out right now" without try/catch around every measurement.
+    if (svg.getClientRects().length === 0) return;
+    const connectors = Array.from(svg.querySelectorAll('line, path')).filter(
+      (el) => typeof el.getTotalLength === 'function'
+    );
+    if (!connectors.length) return;
+    connectors.forEach((el) => {
+      const len = el.getTotalLength();
+      el.style.transition = 'none';
+      el.style.strokeDasharray = String(len);
+      el.style.strokeDashoffset = String(len);
+    });
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        connectors.forEach((el, i) => {
+          el.style.transition = `stroke-dashoffset 0.65s cubic-bezier(.16,1,.3,1) ${i * 0.06}s`;
+          el.style.strokeDashoffset = '0';
+        });
+      });
+    });
+  }
+
   function fillStage(row) {
     const detail = row.querySelector('.proj-row-detail');
     if (!stageInner || !detail) return;
@@ -186,7 +269,7 @@ if (!reduceMotion && typeof window.Lenis !== 'undefined' && hasGSAP) {
     // mouse row1 → row2 → row3 could let row1's delayed swap land last,
     // showing the wrong project's details while hovering row3.
     const myToken = ++fillStage.token;
-    const swap = () => { stageInner.innerHTML = detail.innerHTML; };
+    const swap = () => { stageInner.innerHTML = detail.innerHTML; animateDiagram(stageInner); };
     if (reduceMotion || !stageInner.childNodes.length) {
       swap();
       return;
@@ -210,8 +293,27 @@ if (!reduceMotion && typeof window.Lenis !== 'undefined' && hasGSAP) {
 
   if (reduceMotion) return;
 
+  // Mobile/narrow layout shows .proj-diagram inline (static, not
+  // cloned into a stage — see the max-width:899px rule in
+  // css/style.css), so it needs its own visibility trigger instead of
+  // riding along with fillStage's swap.
+  if (window.matchMedia('(max-width: 899px)').matches && 'IntersectionObserver' in window) {
+    const mobileDiagrams = document.querySelectorAll('.proj-row-detail .proj-diagram');
+    const dObserver = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          animateDiagram(entry.target.closest('.proj-row-detail'));
+          obs.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.4 }
+    );
+    mobileDiagrams.forEach((el) => dObserver.observe(el));
+  }
+
   rows.forEach((row) => {
-    const letters = row.querySelectorAll('.proj-row-title span');
+    const letters = row.querySelectorAll('.proj-row-title-letter');
     const arrow = row.querySelector('.proj-row-arrow');
     let hovering = false;
 
@@ -335,6 +437,85 @@ if (hasGSAP) {
     el.style.opacity = '1'; el.style.transform = 'none'; el.style.filter = 'none';
   });
 }
+
+// ── Scroll progress ──────────────────────────────────────────
+// A thin instrument-panel readout of position in the document, driven
+// 1:1 off scroll (via GSAP+ScrollTrigger when available, a plain
+// scroll listener otherwise). This is exempt from reduced-motion: it's
+// a direct status correlate of where the user already is, the same
+// category as a native progress bar, not an independent animation.
+(function () {
+  const fill = document.getElementById('scrollProgressFill');
+  if (!fill) return;
+  if (hasGSAP) {
+    gsap.set(fill, { width: '0%' });
+    gsap.to(fill, {
+      width: '100%', ease: 'none',
+      scrollTrigger: { trigger: document.documentElement, start: 'top top', end: 'bottom bottom', scrub: 0.3 },
+    });
+  } else {
+    const update = () => {
+      const h = document.documentElement;
+      const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight || 1)) * 100;
+      fill.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+})();
+
+// ── Hero stat count-up ───────────────────────────────────────
+// The three telemetry numbers count up from zero once on load rather
+// than appearing static — timed to land just after their own fadeUp
+// (see .hero-stats animation-delay in style.css) so the number itself
+// feels like it's still arriving when it becomes readable.
+(function () {
+  if (reduceMotion || !hasGSAP) return;
+  document.querySelectorAll('.hero-stat-n').forEach((el) => {
+    const target = parseInt(el.textContent, 10);
+    if (Number.isNaN(target)) return;
+    const digits = el.textContent.trim().length;
+    const proxy = { val: 0 };
+    gsap.to(proxy, {
+      val: target, duration: 1.3, delay: 1.15, ease: 'power2.out',
+      onUpdate: () => { el.textContent = String(Math.round(proxy.val)).padStart(digits, '0'); },
+    });
+  });
+})();
+
+// ── Nav scrollspy ─────────────────────────────────────────────
+// Highlights the nav link for whichever section currently occupies
+// the reading band (a horizontal slice near the top of the viewport,
+// not the full viewport — matching a section "as it becomes primary"
+// rather than "as soon as its top pixel is visible"). Plain
+// IntersectionObserver, no scroll listener, so it costs nothing on
+// the main thread between crossings.
+(function () {
+  const navLinks = Array.from(document.querySelectorAll('.navlinks a[href^="#"]'));
+  if (!navLinks.length) return;
+  const map = new Map();
+  navLinks.forEach((a) => {
+    const id = a.getAttribute('href').slice(1);
+    const section = document.getElementById(id);
+    if (section) map.set(section, a);
+  });
+  if (!map.size) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const link = map.get(entry.target);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navLinks.forEach((a) => a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    },
+    { rootMargin: '-20% 0px -70% 0px', threshold: 0 }
+  );
+  map.forEach((_, section) => observer.observe(section));
+})();
 
 // ── "More projects" toggle ──────────────────────────────────
 const moreToggle = document.getElementById('moreToggle');

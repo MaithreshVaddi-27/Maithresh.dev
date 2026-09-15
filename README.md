@@ -25,11 +25,16 @@ python3 -m http.server 8000
 
 ```
 ├── index.html
+├── robots.txt
+├── sitemap.xml
 ├── css/
 │   └── style.css
-└── js/
-    ├── scene.js   # 3D hero scene (ES module)
-    └── main.js    # scroll reveals, cursor, hover interactions
+├── js/
+│   ├── scene.js   # 3D hero scene (ES module)
+│   └── main.js    # scroll reveals, cursor, hover interactions
+└── assets/
+    ├── og-image.jpg
+    └── svg/       # portrait, wordmark, contribution heatmap
 ```
 
 ## Deploy (GitHub Pages)
@@ -40,4 +45,4 @@ python3 -m http.server 8000
 
 ## License
 
-Personal portfolio — content and code © Vaddi Maithresh.
+Personal portfolio — content and code © Maithresh Vaddi.
