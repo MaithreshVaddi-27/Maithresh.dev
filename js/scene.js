@@ -55,11 +55,11 @@ function run() {
   // Telemetry accent. Varied by intensity/tone within one hue family
   // rather than a second competing color, same discipline as every
   // earlier palette this scene has worn.
-  const keyLight = new THREE.PointLight(0xc7e2f4, 15, 40, 2);
+  const keyLight = new THREE.PointLight(0xb8dde8, 15, 40, 2);
   keyLight.position.set(6, 6, 8);
   scene.add(keyLight);
 
-  const fillLight = new THREE.PointLight(0x8fb0cf, 7, 40, 2);
+  const fillLight = new THREE.PointLight(0x88c0d0, 7, 40, 2);
   fillLight.position.set(-7, 2, -4);
   scene.add(fillLight);
 
@@ -94,7 +94,7 @@ function run() {
   }
   particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
   const particleMat = new THREE.PointsMaterial({
-    color: 0xc7e2f4, size: 0.05, transparent: true, opacity: 0.75,
+    color: 0xb8dde8, size: 0.05, transparent: true, opacity: 0.75,
     sizeAttenuation: true,
   });
   const particles = new THREE.Points(particleGeo, particleMat);
@@ -115,7 +115,7 @@ function run() {
   }
   sparkGeo.setAttribute('position', new THREE.BufferAttribute(sparkPos, 3));
   const sparkMat = new THREE.PointsMaterial({
-    color: 0x8fb0cf, size: 0.16, transparent: true, opacity: 0.9, sizeAttenuation: true,
+    color: 0x88c0d0, size: 0.16, transparent: true, opacity: 0.9, sizeAttenuation: true,
   });
   const sparks = new THREE.Points(sparkGeo, sparkMat);
   scene.add(sparks);
