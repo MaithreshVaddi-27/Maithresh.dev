@@ -18,25 +18,25 @@
        character doesn't shift, only its brightness floor does. Every
        ratio below is equal or better than the previous pass. */
     --bg: #0a0c0e;
-    --bg-soft: #0f1114;
-    --surface: #111417;
-    --surface-2: #171b1f;
-    --line: #2a2f35;
-    --text: #eef0f2;
-    --text-mute: #a8afb6;
-    --text-dim: #868e97;
-    --accent: #8fb0cf;
-    --accent-dim: #223140;
-    --accent-bright: #c7e2f4;
-    --accent-bright-dim: #588099;
-    --green: #27c93f;
-    --green-dim: #12331a;
-    --amber: #ffbd2e;
-    --amber-dim: #3d2f10;
-    --red: #ff5f56;
-    --glass: 22,25,29;
-    --radius: 22px;
-    --radius-sm: 13px;
+    --bg-soft: #0d1015;
+    --surface: #12161c;
+    --surface-2: #171d25;
+    --line: #2e3440;
+    --text: #eceff4;
+    --text-mute: #d8dee9;
+    --text-dim: #8b95a1;
+    --accent: #88c0d0;
+    --accent-dim: #1c2b31;
+    --accent-bright: #b8dde8;
+    --accent-bright-dim: #5e81ac;
+    --green: #a3be8c;
+    --green-dim: #26311f;
+    --amber: #ebcb8b;
+    --amber-dim: #3a331f;
+    --red: #bf616a;
+    --glass: 20,24,30;
+    --radius: 8px;
+    --radius-sm: 4px;
 
     /* Liquid Glass rim — a translucent white edge rather than a flat
        gray line. Real glass doesn't have a solid-color border; it has
@@ -108,6 +108,28 @@
     *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
   }
 
+  /* Liquid Glass accessibility fallbacks — previously missing entirely.
+     Per Apple's Designing Fluid Interfaces / HIG materials guidance:
+     prefers-reduced-transparency should make translucent surfaces
+     frostier/solid (raise opacity, drop blur), and prefers-contrast
+     should swap the soft glass rim for a defined, high-contrast border.
+     Targets every glass-material surface on the page: header, terminal,
+     stack/group cards, sticky project stage, activity card. */
+  @media (prefers-reduced-transparency: reduce){
+    header{ background: #0a0c0e; backdrop-filter: none; -webkit-backdrop-filter: none; }
+    .terminal, .stack-card, .group-card, .proj-stage, .activity-card{
+      background: #14171b; backdrop-filter: none; -webkit-backdrop-filter: none;
+    }
+  }
+  @media (prefers-contrast: more){
+    .terminal, .stack-card, .group-card, .proj-stage, .activity-card{
+      border-color: rgba(255,255,255,0.4);
+    }
+    .chip, .proj-stack span, .navlinks a, .btn-ghost, .nav-cta, .contact-links a{
+      border-color: rgba(255,255,255,0.5);
+    }
+  }
+
   html{ background: var(--bg); } /* fallback if JS/WebGL never paints */
 
   body{
@@ -139,6 +161,36 @@
     position: fixed; inset:0; z-index: 300; pointer-events: none;
     opacity: 0.035; mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* CRT scanlines — thin horizontal lines + a slow flicker, reads as a
+     real terminal/monitor rather than a flat dark UI. Sits below the
+     grain (z-index 299 < 300), above content. Disabled automatically
+     for prefers-reduced-motion via the global animation-duration rule
+     below; also removed for prefers-reduced-transparency since it's a
+     decorative overlay, not structural. */
+  body::before{
+    content:'';
+    position: fixed; inset:0; z-index: 299; pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.22) 0px,
+      rgba(0,0,0,0.22) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    opacity: 0.5;
+    animation: scanline-flicker 6.5s linear infinite;
+  }
+  @keyframes scanline-flicker{
+    0%, 100%{ opacity: 0.5; }
+    45%{ opacity: 0.4; }
+    46%{ opacity: 0.55; }
+    52%{ opacity: 0.42; }
+    53%{ opacity: 0.5; }
+  }
+  @media (prefers-reduced-transparency: reduce){
+    body::before{ display: none; }
   }
 
   /* ── Preloader ───────────────────────────────────────── */
@@ -354,7 +406,7 @@
   .nav-cta{
     font-family: var(--font-mono); font-size: 13px;
     border: 1px solid var(--accent-dim); color: var(--accent);
-    padding: 8px 18px; border-radius: 999px;
+    padding: 8px 18px; border-radius: var(--radius-sm);
     transition: all 0.2s ease;
   }
   .nav-cta:hover{ background: var(--accent); color: #05100e; box-shadow: 0 0 20px rgba(143,176,207,0.4); }
@@ -368,27 +420,6 @@
      alone reads empty in those gaps. Sits behind the canvas (z-index
      -1 vs 0), rendered with CSS only so it costs nothing on the GPU
      budget the WebGL scene is already using. */
-  /* ── AMBIENT BACKGROUND — schematic grid ───────────────
-     A fine blueprint-style grid, laid down first (furthest back,
-     z-index -2), underneath the aurora glow. This is the piece that
-     actually reads as "terminal/engineering schematic" rather than
-     generic gradient-blob decoration — the aurora alone read as a
-     stock dark-SaaS background regardless of accent color. Rendered
-     as a tiled inline-SVG data-URI (same technique as the film-grain
-     overlay above), so it costs nothing on the GPU budget the WebGL
-     scene already owns, and is a true vector pattern rather than a
-     bitmap that would visibly soften on large displays. Fades out
-     toward the bottom of the viewport via mask so it reads as hero
-     texture, not a page-wide tiled wallpaper. */
-  .bg-schematic{
-    position: fixed; inset:0; z-index:-2; pointer-events:none;
-    opacity: 0.055;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='46' height='46'><path d='M46 0H0V46' fill='none' stroke='%238fb0cf' stroke-width='1'/></svg>");
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 92%);
-    mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 92%);
-    transition: transform 0.5s cubic-bezier(.16,1,.3,1); will-change: transform;
-  }
-
   .bg-aurora{
     position: fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none;
     transition: transform 0.6s cubic-bezier(.16,1,.3,1); will-change: transform;
@@ -565,7 +596,7 @@
     .hero-stat-n{ font-size: 1.4rem; }
   }
   .btn{
-    font-family: var(--font-mono); font-size: 14px; padding: 14px 28px; border-radius: 999px;
+    font-family: var(--font-mono); font-size: 14px; padding: 14px 28px; border-radius: var(--radius-sm);
     transition: box-shadow 0.2s ease, transform 0.15s ease-out, color 0.35s ease; display:inline-flex; align-items:center; gap:8px;
     will-change: transform; position: relative; overflow: hidden; isolation: isolate;
   }
@@ -676,8 +707,35 @@
   .ascii-card{ margin-top: 24px; border-radius: var(--radius); overflow: hidden; box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08); }
   .ascii-card img{ display:block; width: 100%; height: auto; }
 
-  .activity-card{ margin: 36px auto 0; max-width: 900px; border: 1px solid var(--elev-1-border); border-radius: var(--radius); overflow: hidden; background: var(--elev-1-bg); backdrop-filter: blur(var(--elev-1-blur)) saturate(var(--elev-1-sat)); -webkit-backdrop-filter: blur(var(--elev-1-blur)) saturate(var(--elev-1-sat)); padding: 16px; }
-  .activity-card img{ display:block; width: 100%; height: auto; }
+  .activity-card{ margin: 36px auto 0; max-width: 1040px; border: 1px solid var(--elev-1-border); border-radius: var(--radius); overflow: hidden; background: var(--elev-1-bg); backdrop-filter: blur(var(--elev-1-blur)) saturate(var(--elev-1-sat)); -webkit-backdrop-filter: blur(var(--elev-1-blur)) saturate(var(--elev-1-sat)); padding: 20px; }
+  .activity-caption{ font-family: var(--font-mono); font-size: 12.5px; color: var(--text-dim); text-align:center; margin-bottom: 14px; }
+  .activity-caption span{ color: var(--green); }
+  /* ghchart.rshah.org bakes empty-contribution cells in GitHub's fixed
+     light-mode gray/white — not configurable via the service's API.
+     Fix: invert(+hue-rotate) the whole image. This is the standard
+     "dark-mode an arbitrary light image" technique (same one used for
+     diagrams in dark-mode docs sites) — it swaps light↔dark globally
+     while preserving the relative contrast between empty and filled
+     cells, so the pattern stays legible instead of crushing to black.
+     Previous attempt used mix-blend-mode:multiply against a near-black
+     backdrop, which was wrong: multiply can only ever darken, so
+     against a dark backdrop it drove the whole image toward black —
+     that's the near-blank result from the last screenshot. */
+  .activity-graph-frame{ background: #0d1015; border-radius: var(--radius-sm); padding: 6px; }
+  .activity-graph-frame a{ display:block; border-radius: inherit; transition: opacity 0.2s ease, transform 0.2s var(--ease-out); }
+  .activity-graph-frame a:hover{ opacity: 0.88; transform: scale(1.004); }
+  .activity-graph-frame img{
+    display:block; width:100%; height:auto;
+    filter: invert(0.92) hue-rotate(180deg) contrast(0.92) saturate(1.4);
+  }
+  @media (prefers-contrast: more){
+    .activity-graph-frame img{ filter: invert(0.92) hue-rotate(180deg); }
+  }
+  /* Shown only if the third-party ghchart.rshah.org request fails
+     (see index.html img onerror) — the live graph has no local backup
+     by design, so failure degrades to a link instead of a broken image. */
+  .activity-fallback{ font-family: var(--font-mono); font-size: 13px; color: var(--text-dim); text-align:center; padding: 28px 16px; }
+  .activity-fallback a{ color: var(--accent); }
 
   .terminal{
     background: var(--elev-1-bg); backdrop-filter: blur(var(--elev-1-blur)) saturate(var(--elev-1-sat)); -webkit-backdrop-filter: blur(var(--elev-1-blur)) saturate(var(--elev-1-sat)); border: 1px solid var(--elev-1-border); border-radius: var(--radius);
@@ -735,7 +793,7 @@
   .chips{ display:flex; flex-wrap:wrap; gap: 8px; }
   .chip{
     font-family: var(--font-mono); font-size: 12px; color: var(--text-mute);
-    background: var(--surface-2); border: 1px solid var(--line); padding: 6px 13px; border-radius: 999px;
+    background: var(--surface-2); border: 1px solid var(--line); padding: 6px 13px; border-radius: var(--radius-sm);
     transition: transform 0.2s cubic-bezier(.16,1,.3,1), border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
   }
   .chip:hover{ transform: translateY(-2px); border-color: var(--accent-dim); color: var(--accent-bright); background: rgba(143,176,207,0.1); }
@@ -930,7 +988,7 @@
   .proj-stack{ display:flex; flex-wrap:wrap; gap:6px; }
   .proj-stack span{
     font-family: var(--font-mono); font-size: 10.5px; color: var(--text-dim);
-    background: var(--surface-2); padding: 4px 10px; border-radius: 999px;
+    background: var(--surface-2); padding: 4px 10px; border-radius: var(--radius-sm);
   }
   .more-projects{ margin-top: 22px; }
   .more-toggle{
@@ -1017,7 +1075,7 @@
   .contact-links{ display:flex; justify-content:center; gap: 16px; flex-wrap:wrap; margin-top: 40px; }
   .contact-links a{
     font-family: var(--font-mono); font-size: 13.5px; border:1px solid var(--line);
-    padding: 13px 24px; border-radius: 999px; transition: all 0.2s ease;
+    padding: 13px 24px; border-radius: var(--radius-sm); transition: all 0.2s ease;
     display:inline-flex; align-items:center; gap:9px;
   }
   .contact-icon{ width:15px; height:15px; flex-shrink:0; }

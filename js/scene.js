@@ -1,12 +1,11 @@
 /**
- * Hero background — animated wave-grid + drifting particle field.
+ * Hero background — drifting particle field (no grid, no wireframe).
  *
- * v4 — full redesign, replacing the earlier orbiting-nodes-around-a-
- * ringed-center layout, which read as a solar system (a bright central
- * "sun" node with a ring, smaller nodes on elliptical paths, camera
- * orbiting around it). Nothing here shares a center or moves in a
- * closed orbit: the grid undulates independently per-vertex, and
- * particles drift and wrap rather than circle a point.
+ * v5 — removed the wave-grid wireframe mesh entirely (was read as
+ * "grid background" across two rounds of feedback, correctly — it
+ * was a literal wireframe PlaneGeometry, not a CSS artifact). What
+ * remains is the particle + spark fields: independent drift, no
+ * shared center, no closed orbits, no grid silhouette.
  *
  * Kept from the previous build (still correct, not the part that had
  * to change): ES modules via import map, real EffectComposer +
@@ -67,28 +66,14 @@ function run() {
   const ambient = new THREE.AmbientLight(0x141d22, 1.3);
   scene.add(ambient);
 
-  // ── Wave grid — a tilted plane whose vertices undulate independently.
-  // This is the actual replacement for the node graph: one continuous
-  // surface with no central focal object, nothing orbiting anything.
-  const gridSize = 34;
-  const gridSegments = isConstrained ? 44 : 72;
-  const gridGeo = new THREE.PlaneGeometry(gridSize, gridSize, gridSegments, gridSegments);
-  gridGeo.rotateX(-Math.PI / 2.35);
-  const basePositions = gridGeo.attributes.position.array.slice(); // original x,y,z per vertex
-
-  const gridMat = new THREE.MeshStandardMaterial({
-    color: 0x223140,
-    emissive: 0x8fb0cf,
-    emissiveIntensity: 0.3,
-    roughness: 0.5,
-    metalness: 0.15,
-    wireframe: true,
-    transparent: true,
-    opacity: 0.4,
-  });
-  const grid = new THREE.Mesh(gridGeo, gridMat);
-  grid.position.y = -2.4;
-  scene.add(grid);
+  // ── Wave grid — REMOVED. This was a literal wireframe PlaneGeometry
+  // mesh, which is what was actually reading as "grid background"
+  // across two rounds of feedback — the CSS grid layers removed
+  // earlier were a red herring; this WebGL object was the real
+  // source. Deleted outright rather than re-skinned, since any
+  // wireframe geometry reads as a grid regardless of color/opacity.
+  // The particle + spark fields below already carry the scene's
+  // depth and motion without a grid silhouette.
 
   // ── Drifting particle field — independent motion, no shared center,
   // wraps around instead of orbiting. The "two size classes for depth"
@@ -135,7 +120,7 @@ function run() {
   const sparks = new THREE.Points(sparkGeo, sparkMat);
   scene.add(sparks);
 
-  // ── Post-processing: real bloom on the grid's emissive lines + sparks.
+  // ── Post-processing: real bloom on the particle/spark glow.
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
   let bloomPass = null;
@@ -166,8 +151,6 @@ function run() {
   }
   window.addEventListener('resize', resize);
 
-  const posAttr = grid.geometry.attributes.position;
-
   let t = 0;
   function animate() {
     requestAnimationFrame(animate);
@@ -179,21 +162,6 @@ function run() {
     camera.position.x = mouseX * 1.4;
     camera.position.y = 3.4 + mouseY * 0.6;
     camera.lookAt(0, -0.5, 0);
-
-    // Undulate the grid — layered sine waves per vertex, no shared
-    // center or rotation, just a continuously moving surface.
-    if (!reduceMotion) {
-      for (let i = 0; i < posAttr.count; i++) {
-        const ix = i * 3;
-        const bx = basePositions[ix];
-        const bz = basePositions[ix + 2];
-        const wave =
-          Math.sin(bx * 0.18 + t) * 0.55 +
-          Math.cos(bz * 0.22 + t * 0.8) * 0.4;
-        posAttr.array[ix + 1] = basePositions[ix + 1] + wave;
-      }
-      posAttr.needsUpdate = true;
-    }
 
     // Particles drift steadily along one axis and wrap — never circle
     // a center point.

@@ -1,3 +1,18 @@
+// ── Live GitHub activity graph — cache-bust to the current day ──
+// ghchart.rshah.org re-renders from real GitHub data on every request,
+// so the graph is already "live" — but a browser or intermediate CDN
+// can still cache the image URL and serve a stale copy on repeat
+// visits. Appending the current date as a query param busts that
+// cache once per day (not on every reload, so it doesn't hammer the
+// origin) without needing any build step or server of our own.
+(function () {
+  const img = document.querySelector('.activity-graph-frame img');
+  if (!img) return;
+  const day = new Date().toISOString().slice(0, 10);
+  const base = img.getAttribute('src').split('?')[0];
+  img.setAttribute('src', `${base}?${day}`);
+})();
+
 // ── Mobile nav toggle ──────────────────────────────────────────
 (function () {
   const toggle = document.getElementById('navToggle');
@@ -127,26 +142,21 @@ if (!reduceMotion && typeof window.Lenis !== 'undefined' && hasGSAP) {
 })();
 
 // ── Hero background parallax — depth via layered mouse response ──
-// The aurora glow (nearest layer) drifts more than the schematic grid
-// (farthest layer), the way foreground moves faster than background in
-// real parallax. Event-driven rather than rAF-looped since it only
-// needs to settle once per pointer move, not track continuously — the
-// CSS transition on each layer (see style.css) supplies the easing.
+// Event-driven rather than rAF-looped since it only needs to settle
+// once per pointer move, not track continuously — the CSS transition
+// on the aurora layer (see style.css) supplies the easing.
 (function () {
   if (reduceMotion) return;
   const hero = document.querySelector('.hero');
   const aurora = document.querySelector('.bg-aurora');
-  const schematic = document.querySelector('.bg-schematic');
   if (!hero || !aurora) return;
   hero.addEventListener('mousemove', (e) => {
     const x = (e.clientX / window.innerWidth - 0.5);
     const y = (e.clientY / window.innerHeight - 0.5);
     aurora.style.transform = `translate(${x * -24}px, ${y * -18}px)`;
-    if (schematic) schematic.style.transform = `translate(${x * -8}px, ${y * -6}px)`;
   });
   hero.addEventListener('mouseleave', () => {
     aurora.style.transform = '';
-    if (schematic) schematic.style.transform = '';
   });
 })();
 
