@@ -320,7 +320,7 @@
   .scroll-progress-fill{
     height:100%; width:0%;
     background: linear-gradient(90deg, var(--accent) 0%, var(--accent-bright) 100%);
-    box-shadow: 0 0 10px rgba(199,226,244,0.55);
+    box-shadow: 0 0 10px rgba(184,221,232,0.55);
   }
   /* Titlebar strip — the whole header reads as one terminal window,
      the same chrome as the wordmark/ascii-portrait SVGs below it, so
@@ -410,7 +410,7 @@
     padding: 8px 18px; border-radius: var(--radius-sm);
     transition: all 0.2s ease;
   }
-  .nav-cta:hover{ background: var(--accent); color: #05100e; box-shadow: 0 0 20px rgba(143,176,207,0.4); }
+  .nav-cta:hover{ background: var(--accent); color: #05100e; box-shadow: 0 0 20px rgba(136,192,208,0.4); }
 
   /* ── AMBIENT BACKGROUND (aurora) ───────────────────────
      This is the actual background layer, separate from the WebGL
@@ -515,7 +515,7 @@
      visibly displaces it. Pure CSS, no extra asset. */
   .hero-portrait::before{
     content:''; position:absolute; inset:-18%; z-index:-1;
-    background: radial-gradient(circle, rgba(143,176,207,0.26), rgba(143,176,207,0.06) 55%, transparent 72%);
+    background: radial-gradient(circle, rgba(136,192,208,0.26), rgba(136,192,208,0.06) 55%, transparent 72%);
     filter: blur(10px); pointer-events:none;
   }
 
@@ -551,7 +551,7 @@
   h1 span{
     background: linear-gradient(100deg, var(--accent) 10%, var(--accent-bright) 90%);
     -webkit-background-clip: text; background-clip: text; color: transparent;
-    filter: drop-shadow(0 0 18px rgba(199,226,244,0.35));
+    filter: drop-shadow(0 0 18px rgba(184,221,232,0.35));
   }
   .hero-role{
     font-family: var(--font-mono); font-size: clamp(0.95rem, 2vw, 1.15rem);
@@ -607,7 +607,7 @@
     transform: translateX(-101%); transition: transform 0.4s var(--ease-in-out);
   }
   .btn-primary{ background: var(--accent); color: #05070c; font-weight: 600; }
-  .btn-primary:hover{ box-shadow: 0 0 32px rgba(143,176,207,0.45); }
+  .btn-primary:hover{ box-shadow: 0 0 32px rgba(136,192,208,0.45); }
   .btn-primary:hover::before{ transform: translateX(0); }
   .btn-ghost{ border: 1px solid var(--line); color: var(--text); }
   .btn-ghost:hover{ border-color: transparent; color: #fff; }
@@ -711,20 +711,15 @@
   .activity-card{ margin: 36px auto 0; max-width: 1040px; border: 1px solid var(--elev-1-border); border-radius: var(--radius); overflow: hidden; background: var(--elev-1-bg); backdrop-filter: blur(var(--elev-1-blur)) saturate(var(--elev-1-sat)); -webkit-backdrop-filter: blur(var(--elev-1-blur)) saturate(var(--elev-1-sat)); padding: 20px; }
   .activity-caption{ font-family: var(--font-mono); font-size: 12.5px; color: var(--text-dim); text-align:center; margin-bottom: 14px; }
   .activity-caption span{ color: var(--green); }
-  /* ghchart.rshah.org bakes empty-contribution cells in GitHub's fixed
-     light-mode gray/white — not configurable via the service's API.
-     Fix: invert(+hue-rotate) the whole image. This is the standard
-     "dark-mode an arbitrary light image" technique (same one used for
-     diagrams in dark-mode docs sites) — it swaps light↔dark globally
-     while preserving the relative contrast between empty and filled
-     cells, so the pattern stays legible instead of crushing to black.
-     Previous attempt used mix-blend-mode:multiply against a near-black
-     backdrop, which was wrong: multiply can only ever darken, so
-     against a dark backdrop it drove the whole image toward black —
-     that's the near-blank result from the last screenshot. */
   .activity-graph-frame{ background: #0d1015; border-radius: var(--radius-sm); padding: 6px; }
   .activity-graph-frame a{ display:block; border-radius: inherit; transition: opacity 0.2s ease, transform 0.2s var(--ease-out); }
   .activity-graph-frame a:hover{ opacity: 0.88; transform: scale(1.004); }
+  /* ghchart.rshah.org bakes empty-contribution cells in GitHub's fixed
+     light-mode gray/white -- not configurable via the service's API.
+     Fix: invert(+hue-rotate) the whole image, the standard "dark-mode
+     an arbitrary light image" technique -- swaps light/dark globally
+     while preserving the relative contrast between empty and filled
+     cells, so the pattern stays legible instead of crushing to black. */
   .activity-graph-frame img{
     display:block; width:100%; height:auto;
     filter: invert(0.92) hue-rotate(180deg) contrast(0.92) saturate(1.4);
@@ -782,9 +777,9 @@
      rhyme rather than a fourth repeat of the literal dot motif. */
   .stack-card::before{ content:''; position:absolute; top:0; left:0; right:0; height:2px; }
   .stack-card:nth-child(1)::before{ background: var(--accent-bright); }
-  .stack-card:nth-child(2)::before{ background: rgba(143,176,207,0.65); }
-  .stack-card:nth-child(3)::before{ background: rgba(199,226,244,0.55); }
-  .stack-card:nth-child(4)::before{ background: rgba(143,176,207,0.4); }
+  .stack-card:nth-child(2)::before{ background: rgba(136,192,208,0.65); }
+  .stack-card:nth-child(3)::before{ background: rgba(184,221,232,0.55); }
+  .stack-card:nth-child(4)::before{ background: rgba(136,192,208,0.4); }
   .stack-card h3{
     font-family: var(--font-mono); font-size: 13px; color: var(--accent); margin-bottom: 14px;
     text-transform: uppercase; letter-spacing: 0.5px;
@@ -797,7 +792,7 @@
     background: var(--surface-2); border: 1px solid var(--line); padding: 6px 13px; border-radius: var(--radius-sm);
     transition: transform 0.2s var(--ease-out), border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
   }
-  .chip:hover{ transform: translateY(-2px); border-color: var(--accent-dim); color: var(--accent-bright); background: rgba(143,176,207,0.1); }
+  .chip:hover{ transform: translateY(-2px); border-color: var(--accent-dim); color: var(--accent-bright); background: rgba(136,192,208,0.1); }
   @media (prefers-reduced-motion: reduce){ .chip:hover{ transform:none; } }
   .stack-note{ font-size: 12px; color: var(--text-dim); margin-top: 12px; }
 
@@ -822,7 +817,7 @@
     content:''; position:absolute; inset:0; z-index:0;
     /* A quiet tint wash, not a full-saturation color block — the sweep
        is now support for the hover, not the whole effect. */
-    background: linear-gradient(100deg, rgba(143,176,207,0.16), rgba(143,176,207,0.06));
+    background: linear-gradient(100deg, rgba(136,192,208,0.16), rgba(136,192,208,0.06));
     transform: translateX(-101%);
     transition: transform 0.55s var(--ease-in-out);
   }
@@ -833,7 +828,7 @@
     color: var(--text-dim); width: 34px; flex-shrink:0;
     transition: color 0.3s ease, text-shadow 0.3s ease;
   }
-  .proj-row:hover .proj-row-index, .proj-row:focus-visible .proj-row-index{ color: #fff; text-shadow: 0 0 12px rgba(143,176,207,0.75); }
+  .proj-row:hover .proj-row-index, .proj-row:focus-visible .proj-row-index{ color: #fff; text-shadow: 0 0 12px rgba(136,192,208,0.75); }
 
   .proj-row-main{ position:relative; z-index:1; flex: 1; min-width:0; }
   .proj-row-title{
@@ -881,7 +876,7 @@
     transition: color 0.3s ease;
   }
   @media(min-width:640px){ .proj-row-tag{ display:block; } }
-  .proj-row:hover .proj-row-tag, .proj-row:focus-visible .proj-row-tag{ color: rgba(199,226,244,0.85); }
+  .proj-row:hover .proj-row-tag, .proj-row:focus-visible .proj-row-tag{ color: rgba(184,221,232,0.85); }
 
   .proj-row-arrow{
     position:relative; z-index:1; font-size: 20px; color: var(--text-dim);
@@ -896,7 +891,7 @@
     position:relative; z-index:1; width:52px; height:52px; border-radius: var(--radius-sm);
     flex-shrink:0; display:none; opacity:0; transform: scale(0.55) rotate(-10deg);
     transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
-    box-shadow: 0 8px 24px -8px rgba(143,176,207,0.45);
+    box-shadow: 0 8px 24px -8px rgba(136,192,208,0.45);
     align-items:center; justify-content:center;
   }
   /* Each swatch carries a hand-drawn line icon specific to that
@@ -941,8 +936,8 @@
     transition: opacity 0.3s ease, transform 0.3s var(--ease-out), filter 0.3s ease;
   }
   .proj-stage-inner.swapping{ opacity:0; transform: translateY(8px) scale(0.985); filter: blur(3px); }
-  .proj-stage .proj-desc{ color: rgba(238,240,242,0.92); }
-  .proj-stage .proj-highlight{ margin-top:16px; color: rgba(238,240,242,0.86); border-left-color: rgba(143,176,207,0.55); }
+  .proj-stage .proj-desc{ color: rgba(236,239,244,0.92); }
+  .proj-stage .proj-highlight{ margin-top:16px; color: rgba(236,239,244,0.86); border-left-color: rgba(136,192,208,0.55); }
   .proj-stage .proj-highlight b{ color: #fff; }
   .proj-stage .proj-stack{ margin-top:16px; }
   .proj-stage .proj-stack span{ background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85); }
@@ -1015,7 +1010,7 @@
   }
   .auto-item::before{
     content:''; position:absolute; inset: 0; z-index:0;
-    background: linear-gradient(100deg, rgba(143,176,207,0.10), rgba(143,176,207,0.02));
+    background: linear-gradient(100deg, rgba(136,192,208,0.10), rgba(136,192,208,0.02));
     opacity:0; transition: opacity 0.3s ease;
   }
   .auto-item:hover::before{ opacity:1; }
@@ -1047,7 +1042,7 @@
     opacity:0; transition: opacity 0.3s ease;
   }
   .group-card:hover::before{ opacity:1; }
-  .group-card:hover{ border-color: var(--accent-dim); box-shadow: 0 20px 40px -20px rgba(143,176,207,0.18); }
+  .group-card:hover{ border-color: var(--accent-dim); box-shadow: 0 20px 40px -20px rgba(136,192,208,0.18); }
   .group-card .proj-tag{ color: var(--accent-bright); }
   .group-card p{ font-size:0.88rem; color: var(--text-mute); margin-bottom: 10px; }
   .group-card .scope{ font-size:0.85rem; color: var(--text); background: var(--surface-2); border-radius: var(--radius-sm); padding:10px 12px; margin-bottom:12px; }
@@ -1080,7 +1075,7 @@
     display:inline-flex; align-items:center; gap:9px;
   }
   .contact-icon{ width:15px; height:15px; flex-shrink:0; }
-  .contact-links a:hover{ border-color: var(--accent-dim); color: var(--accent); box-shadow: 0 0 20px rgba(143,176,207,0.22); }
+  .contact-links a:hover{ border-color: var(--accent-dim); color: var(--accent); box-shadow: 0 0 20px rgba(136,192,208,0.22); }
   footer{
     border-top: 1px solid var(--line); padding: 32px 0; text-align:center;
     font-family: var(--font-mono); font-size: 12px; color: var(--text-dim);

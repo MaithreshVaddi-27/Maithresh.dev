@@ -34,7 +34,7 @@ python3 -m http.server 8000
 │   └── main.js    # scroll reveals, cursor, hover interactions
 └── assets/
     ├── og-image.jpg
-    └── svg/       # portrait, wordmark, contribution heatmap
+    └── svg/       # portrait, wordmark
 ```
 
 ## Deploy (GitHub Pages)
