@@ -1,16 +1,72 @@
-// ── Live GitHub activity graph — cache-bust to the current day ──
-// ghchart.rshah.org re-renders from real GitHub data on every request,
-// so the graph is already "live" — but a browser or intermediate CDN
-// can still cache the image URL and serve a stale copy on repeat
-// visits. Appending the current date as a query param busts that
-// cache once per day (not on every reload, so it doesn't hammer the
-// origin) without needing any build step or server of our own.
+// ── Live GitHub activity graph — rendered client-side from raw data ──
+// Earlier version embedded ghchart.rshah.org's pre-rendered image.
+// Confirmed stale in practice (missing weeks of real activity, cache
+// TTL not under our control or even documented). Fixed properly: fetch
+// the raw contribution data ourselves from jogruber's API (no token
+// needed, browser-fetchable — the same data source libraries like
+// react-github-calendar use directly) and draw the heatmap as SVG in
+// our own Nord colors. No third-party rendering cache in the loop at
+// all, so it's exactly as fresh as GitHub's own data, on every load.
 (function () {
-  const img = document.querySelector('.activity-graph-frame img');
-  if (!img) return;
-  const day = new Date().toISOString().slice(0, 10);
-  const base = img.getAttribute('src').split('?')[0];
-  img.setAttribute('src', `${base}?${day}`);
+  const container = document.getElementById('contribGraph');
+  if (!container) return;
+
+  const LEVEL_COLOR = ['#2e3440', '#4c566a', '#5e81ac', '#81a1c1', '#88c0d0'];
+  const CELL = 11, GAP = 3, LEFT_PAD = 28, TOP_PAD = 18;
+
+  fetch('https://github-contributions-api.jogruber.de/v4/MaithreshVaddi-27?y=last')
+    .then((res) => { if (!res.ok) throw new Error('bad response'); return res.json(); })
+    .then((data) => {
+      const days = data && data.contributions;
+      if (!days || !days.length) throw new Error('no contribution data');
+
+      const firstDow = new Date(days[0].date + 'T00:00:00Z').getUTCDay();
+      const padded = new Array(firstDow).fill(null).concat(days);
+      const weeks = [];
+      for (let i = 0; i < padded.length; i += 7) weeks.push(padded.slice(i, i + 7));
+
+      const width = LEFT_PAD + weeks.length * (CELL + GAP);
+      const height = TOP_PAD + 7 * (CELL + GAP);
+
+      let monthLabels = '';
+      let lastMonth = -1;
+      weeks.forEach((week, wi) => {
+        const firstReal = week.find((d) => d);
+        if (!firstReal) return;
+        const d = new Date(firstReal.date + 'T00:00:00Z');
+        const m = d.getUTCMonth();
+        if (m === lastMonth) return;
+        lastMonth = m;
+        const x = LEFT_PAD + wi * (CELL + GAP);
+        const label = d.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
+        monthLabels += `<text x="${x}" y="10" font-size="10" fill="#8b95a1" font-family="'JetBrains Mono',monospace">${label}</text>`;
+      });
+
+      const dayLabels = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
+      const dayLabelSvg = dayLabels.map((l, i) => l
+        ? `<text x="0" y="${TOP_PAD + i * (CELL + GAP) + 9}" font-size="10" fill="#8b95a1" font-family="'JetBrains Mono',monospace">${l}</text>`
+        : '').join('');
+
+      let rects = '';
+      weeks.forEach((week, wi) => {
+        week.forEach((d, di) => {
+          if (!d) return;
+          const x = LEFT_PAD + wi * (CELL + GAP);
+          const y = TOP_PAD + di * (CELL + GAP);
+          const color = LEVEL_COLOR[d.level] || LEVEL_COLOR[0];
+          const label = `${d.count} contribution${d.count === 1 ? '' : 's'} on ${d.date}`;
+          rects += `<rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2" fill="${color}"><title>${label}</title></rect>`;
+        });
+      });
+
+      container.innerHTML = `<svg viewBox="0 0 ${width} ${height}" width="100%" height="auto" role="img" aria-label="GitHub contribution graph, last 12 months">${monthLabels}${dayLabelSvg}${rects}</svg>`;
+    })
+    .catch(() => {
+      const card = container.closest('.activity-card');
+      if (card) {
+        card.innerHTML = '<p class="activity-fallback">Live GitHub activity — <a href="https://github.com/MaithreshVaddi-27" target="_blank" rel="noopener">view on GitHub →</a></p>';
+      }
+    });
 })();
 
 // ── Mobile nav toggle ──────────────────────────────────────────

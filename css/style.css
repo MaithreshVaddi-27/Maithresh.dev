@@ -711,25 +711,17 @@
   .activity-card{ margin: 36px auto 0; max-width: 1040px; border: 1px solid var(--elev-1-border); border-radius: var(--radius); overflow: hidden; background: var(--elev-1-bg); backdrop-filter: blur(var(--elev-1-blur)) saturate(var(--elev-1-sat)); -webkit-backdrop-filter: blur(var(--elev-1-blur)) saturate(var(--elev-1-sat)); padding: 20px; }
   .activity-caption{ font-family: var(--font-mono); font-size: 12.5px; color: var(--text-dim); text-align:center; margin-bottom: 14px; }
   .activity-caption span{ color: var(--green); }
-  .activity-graph-frame{ background: #0d1015; border-radius: var(--radius-sm); padding: 6px; }
+  .activity-graph-frame{ background: #0d1015; border-radius: var(--radius-sm); padding: 12px 6px; }
   .activity-graph-frame a{ display:block; border-radius: inherit; transition: opacity 0.2s ease, transform 0.2s var(--ease-out); }
   .activity-graph-frame a:hover{ opacity: 0.88; transform: scale(1.004); }
-  /* ghchart.rshah.org bakes empty-contribution cells in GitHub's fixed
-     light-mode gray/white -- not configurable via the service's API.
-     Fix: invert(+hue-rotate) the whole image, the standard "dark-mode
-     an arbitrary light image" technique -- swaps light/dark globally
-     while preserving the relative contrast between empty and filled
-     cells, so the pattern stays legible instead of crushing to black. */
-  .activity-graph-frame img{
-    display:block; width:100%; height:auto;
-    filter: invert(0.92) hue-rotate(180deg) contrast(0.92) saturate(1.4);
-  }
-  @media (prefers-contrast: more){
-    .activity-graph-frame img{ filter: invert(0.92) hue-rotate(180deg); }
-  }
-  /* Shown only if the third-party ghchart.rshah.org request fails
-     (see index.html img onerror) — the live graph has no local backup
-     by design, so failure degrades to a link instead of a broken image. */
+  /* Rendered client-side from raw contribution data (see the fetch in
+     main.js) — cells are drawn directly in Nord colors, so there's no
+     third-party image to color-correct the way ghchart needed. */
+  #contribGraph{ display:block; width:100%; }
+  #contribGraph svg rect{ cursor: pointer; }
+  /* Shown only if the jogruber.de contribution-data fetch fails (see
+     the .catch in main.js) — the live graph has no local backup by
+     design, so failure degrades to a link instead of an empty box. */
   .activity-fallback{ font-family: var(--font-mono); font-size: 13px; color: var(--text-dim); text-align:center; padding: 28px 16px; }
   .activity-fallback a{ color: var(--accent); }
 
