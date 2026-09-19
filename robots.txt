@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maithreshvaddi-27.github.io/Maithresh.dev/sitemap.xml
