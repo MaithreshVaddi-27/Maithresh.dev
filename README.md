@@ -34,7 +34,24 @@ python3 -m http.server 8000
 │   └── main.js    # scroll reveals, cursor, hover interactions
 └── assets/
     ├── og-image.jpg
-    └── svg/       # portrait, wordmark
+    └── svg/       # portrait, wordmark — filenames carry a content hash (see below)
+```
+
+## Cache-busting (read this before every deploy)
+
+GitHub Pages sits behind Fastly's CDN, which caches assets by exact URL. `css/style.css`
+and `js/*.js` are loaded with a `?v=<hash>` query string, and the two SVGs under
+`assets/svg/` carry the hash directly in the filename
+(`maithresh-wordmark.<hash>.svg`). Editing a file's *content* without changing its
+*URL* means both the CDN edge and the visitor's browser keep serving the old bytes —
+this is the exact "works locally, still shows the old version in production" bug.
+
+Whenever you edit `css/style.css`, `js/main.js`, `js/scene.js`, or either SVG,
+regenerate its hash and update every reference before you commit:
+
+```bash
+sha1sum css/style.css js/main.js js/scene.js assets/svg/*.svg
+# then update the ?v=<hash> / <hash> in the filename, everywhere it's referenced in index.html
 ```
 
 ## Deploy (GitHub Pages)
