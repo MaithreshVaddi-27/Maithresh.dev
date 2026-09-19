@@ -11,7 +11,16 @@
   const container = document.getElementById('contribGraph');
   if (!container) return;
 
-  const LEVEL_COLOR = ['#2e3440', '#4c566a', '#5e81ac', '#81a1c1', '#88c0d0'];
+  // Level 0 was '#2e3440' — measured against the actual page background
+  // (#0a0c0e) that's roughly 3x brighter per channel, so on the live
+  // site every "no contribution" day (the majority of ~365 cells) read
+  // as a lit, near-uniform gray square, and the handful of real commit
+  // days barely stood out. Level 0 now recedes into the card (translucent,
+  // catches the aurora/glass tint instead of asserting its own flat
+  // color) the way GitHub's own empty cells do; levels 1–4 keep the
+  // Nord blue ramp so real activity is what actually reads.
+  const LEVEL_COLOR = ['rgba(255,255,255,0.05)', '#3b5166', '#5e81ac', '#81a1c1', '#88c0d0'];
+  const CELL_STROKE = 'rgba(255,255,255,0.05)';
   const CELL = 11, GAP = 3, LEFT_PAD = 28, TOP_PAD = 18;
 
   fetch('https://github-contributions-api.jogruber.de/v4/MaithreshVaddi-27?y=last')
@@ -55,7 +64,7 @@
           const y = TOP_PAD + di * (CELL + GAP);
           const color = LEVEL_COLOR[d.level] || LEVEL_COLOR[0];
           const label = `${d.count} contribution${d.count === 1 ? '' : 's'} on ${d.date}`;
-          rects += `<rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2" fill="${color}"><title>${label}</title></rect>`;
+          rects += `<rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2" fill="${color}" stroke="${CELL_STROKE}" stroke-width="1"><title>${label}</title></rect>`;
         });
       });
 
